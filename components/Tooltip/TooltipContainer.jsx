@@ -1,11 +1,15 @@
-import React, { useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import TooltipUi from "./TooltipUi";
 
 //tooltip container component
 const TooltipContainer = React.forwardRef((props, ref) => {
   const { children, tooltipText } = props;
   const [showTooltip, setShowTooltip] = useState(false);
-  const [offset, setOffset] = useState({ x: "", y: "" });
+  const childRef = useRef();
+  const [offset, setOffset] = useState({
+    x: "",
+    y: "",
+  });
 
   //setting mouse enter and leave event for the components children
   const childrens = React.Children.map(children, (child) => {
@@ -30,8 +34,19 @@ const TooltipContainer = React.forwardRef((props, ref) => {
         //if user moved cursor out of child, hide the tooltip
         setShowTooltip(false);
       },
+      ref: childRef,
     });
   });
+
+  //initialize the position of child component at the first render
+  useEffect(() => {
+    setOffset(() => {
+      return {
+        x: childRef.current.offsetLeft,
+        y: childRef.current.offsetTop,
+      };
+    });
+  }, []);
 
   return (
     <>

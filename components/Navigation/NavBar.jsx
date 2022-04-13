@@ -18,7 +18,7 @@ const NavBar = () => {
   useOutSideClick(optionsRef, () => setShowOptions(false));
 
   return (
-    <div className="h-full float-left w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]">
+    <div className="h-full row-start-1 row-end-[13] col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]">
       <Logo />
       <Link href="/" passHref>
         <TooltipContainer tooltipText="home">

@@ -7,7 +7,7 @@ const FilterContainer = () => {
   const [selectedFilter, setSelectedFilter] = useState(null);
 
   return (
-    <div className="w-[400px] h-full flex items-center justify-end">
+    <div className="w-[400px] h-full hidden md:flex items-center justify-end">
       <span
         className="w-[20px] h-[20px] cursor-pointer"
         onClick={() => {

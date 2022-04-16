@@ -14,14 +14,14 @@ const SearchForm = () => {
   return (
     <form
       onSubmit={submitHandler}
-      className="flex-grow bg-[#1a1a1a] items-center border-2 border-solid border-[#2d2d2d] px-[2px] rounded-[25px] flex"
+      className="flex-grow bg-[#1a1a1a] mr-[15px] items-center border-2 border-solid border-[#2d2d2d] px-[2px] rounded-[25px] flex"
     >
-        <SearchBtn />
-        <SearchInput
-          updateSearch={(e) => {
-            setSearchInput(e.target.value);
-          }}
-        />
+      <SearchBtn />
+      <SearchInput
+        updateSearch={(e) => {
+          setSearchInput(e.target.value);
+        }}
+      />
       <FilterContainer />
     </form>
   );

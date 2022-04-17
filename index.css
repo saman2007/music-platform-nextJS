@@ -1,3 +1,24 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
+
+::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgba(255, 255, 255, 0.575);
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #242729;
+    border-radius: 10px;
+}
+
+html {
+    font-family: 'Fira Sans', sans-serif;
+}

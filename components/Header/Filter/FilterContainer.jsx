@@ -1,5 +1,4 @@
 import AdjustmentsIcon from "@heroicons/react/outline/AdjustmentsIcon";
-import XIcon from "@heroicons/react/outline/XIcon";
 import { useState } from "react";
 import FilterItem from "./FilterItem";
 
@@ -8,34 +7,29 @@ const FilterContainer = () => {
 
   return (
     <div className="w-[400px] h-full hidden md:flex items-center justify-end">
-      <span
-        className="w-[20px] h-[20px] cursor-pointer"
-        onClick={() => {
-          setSelectedFilter(null);
-        }}
-      >
-        <XIcon className="text-red-600 w-full h-full" />
-      </span>
       <div className="overflow-x-auto mr-[10px] flex items-center">
         <FilterItem
           text="minimal"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {
-            setSelectedFilter("minimal");
+            if (selectedFilter === "minimal") setSelectedFilter(null);
+            else setSelectedFilter("minimal");
           }}
         />
         <FilterItem
           text="house"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {
-            setSelectedFilter("house");
+            if (selectedFilter === "house") setSelectedFilter(null);
+            else setSelectedFilter("house");
           }}
         />
         <FilterItem
           text="rap"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {
-            setSelectedFilter("rap");
+            if (selectedFilter === "rap") setSelectedFilter(null);
+            else setSelectedFilter("rap");
           }}
         />
       </div>

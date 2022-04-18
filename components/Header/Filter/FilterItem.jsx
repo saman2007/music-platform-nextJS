@@ -1,5 +1,3 @@
-import { useEffect } from "react";
-
 const FilterItem = (props) => {
   const { text, currentFilter, setCurrentFilter } = props;
 

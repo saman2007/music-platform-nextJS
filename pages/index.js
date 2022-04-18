@@ -1,3 +1,4 @@
+import Genres from "../components/Genres/Genres";
 import MusicCollection from "../components/MusicCollectionCard/MusicCollection";
 
 //music collections infos
@@ -36,10 +37,19 @@ const CollectionsInfos = [
   },
 ];
 
+const genres = [
+  "Classic",
+  "House",
+  "Minimal",
+  "Hip-Hop",
+  "Electronic",
+  "Chill",
+];
+
 export default function Home() {
   return (
-    <div className="row-start-2 row-end-[13] col-start-2 col-end-13">
-      <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px]">
+    <div className="row-start-2 row-end-[13] col-start-2 col-end-13 px-[15px]">
+      <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
         {CollectionsInfos.map((data) => (
           <MusicCollection
             key={data.id}
@@ -50,6 +60,9 @@ export default function Home() {
             description={data.description}
           />
         ))}
+      </div>
+      <div className="w-full flex">
+        <Genres genres={genres} />
       </div>
     </div>
   );

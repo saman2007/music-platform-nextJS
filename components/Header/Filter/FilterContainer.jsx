@@ -18,6 +18,7 @@ const FilterContainer = () => {
       </span>
       <div className="overflow-x-auto mr-[10px] flex items-center">
         <FilterItem
+          margin
           text="minimal"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {
@@ -25,6 +26,7 @@ const FilterContainer = () => {
           }}
         />
         <FilterItem
+          margin
           text="house"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {
@@ -32,6 +34,7 @@ const FilterContainer = () => {
           }}
         />
         <FilterItem
+          margin
           text="rap"
           currentFilter={selectedFilter}
           setCurrentFilter={() => {

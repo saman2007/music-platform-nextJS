@@ -81,7 +81,7 @@ export default function Home() {
           />
         ))}
       </div>
-      <div className="w-full flex gap-x-[20px]">
+      <div className="w-full flex gap-x-[20px] flex-col items-center md:flex-row">
         <Genres genres={genres} />
         <MusicList musics={musics} />
       </div>

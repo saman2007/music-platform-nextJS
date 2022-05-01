@@ -22,7 +22,6 @@ const MusicTimeLine = (props) => {
       <p className="text-white text-[14px]">{getTime(currentTime)}</p>
       <Bar
         callBack={(percent) => {
-          console.log("in Bar component while setting new time    " + percent);
           //calculate the new current time number of audio base on users clicked or moved percent
           const newTime = (percent / 100) * musicDuration;
           //setting the calculated time

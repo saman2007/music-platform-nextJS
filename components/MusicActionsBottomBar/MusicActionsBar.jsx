@@ -11,111 +11,120 @@ import MusicTimeLine from "./MusicTimeLine";
 import VolumeBar from "./VolumeBar";
 
 //a component to display actions buttons and music infos
-const MusicActionsBar = (props) => {
-  const { cover, musicName, musicSinger, singerPage, musicPage, currentMusic } =
-    props;
+const MusicActionsBar = () => {
   const playingMusic = useSelector((state) => state.music.currentMusic);
   const isPlayingMusic = useSelector((state) => state.music.isPlaying);
   const musicRef = useRef();
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //if music ref is redy
-    if (musicRef) {
-      //set the current musics path
-      dispatch(musicActions.setCurrentMusic(currentMusic));
-      //when metadata of audio loaded, set the music duration
-      musicRef.current.onloadedmetadata = () => {
-        dispatch(musicActions.setDuration(musicRef.current.duration));
-      };
-      //on each time update, update the currentTime state
-      musicRef.current.ontimeupdate = () => {
-        dispatch(musicActions.setCurrentTime(musicRef.current.currentTime));
-      };
-      //when music is finished, the music will be paused
-      musicRef.current.onended = () => {
-        dispatch(musicActions.setIsPlaying(false));
-      };
+    if (playingMusic) {
+      //if music ref is redy
+      if (musicRef) {
+        //when metadata of audio loaded, set the music duration
+        musicRef.current.onloadedmetadata = () => {
+          dispatch(musicActions.setDuration(musicRef.current.duration));
+        };
+        //on each time update, update the currentTime state
+        musicRef.current.ontimeupdate = () => {
+          dispatch(musicActions.setCurrentTime(musicRef.current.currentTime));
+        };
+        //when music is finished, the music will be paused
+        musicRef.current.onended = () => {
+          dispatch(musicActions.setIsPlaying(false));
+        };
+      }
     }
-  }, [currentMusic]);
+  }, [playingMusic]);
 
   useEffect(() => {
-    const onSpaceClick = (e) => {
-      console.log(e.keyCode);
-      //if user clicked on spacebar, music should be paused or play
-      if (e.keyCode === 32) {
-        dispatch(musicActions.setIsPlaying(!isPlayingMusic));
-        if (!isPlayingMusic) musicRef.current.play();
-        else musicRef.current.pause();
-        //if user clicked on arrow right, music current time will be increased by 5 seconds
-      } else if (e.keyCode === 39) {
-        musicRef.current.currentTime += 5;
-        //if user clicked on arrow left, music current time will be decreased by 5 seconds
-      } else if (e.keyCode === 37) {
-        musicRef.current.currentTime -= 5;
-      }
-    };
+    if (playingMusic) {
+      const onSpaceClick = (e) => {
+        //if user clicked on spacebar, music should be paused or play
+        if (e.keyCode === 32) {
+          dispatch(musicActions.setIsPlaying(!isPlayingMusic));
+          //if user clicked on arrow right, music current time will be increased by 5 seconds
+        } else if (e.keyCode === 39) {
+          musicRef.current.currentTime += 5;
+          //if user clicked on arrow left, music current time will be decreased by 5 seconds
+        } else if (e.keyCode === 37) {
+          musicRef.current.currentTime -= 5;
+        }
+      };
 
-    window.addEventListener("keydown", onSpaceClick);
+      window.addEventListener("keydown", onSpaceClick);
 
-    return () => {
-      window.removeEventListener("keydown", onSpaceClick);
-    };
+      return () => {
+        window.removeEventListener("keydown", onSpaceClick);
+      };
+    }
   }, [isPlayingMusic]);
+
+  useEffect(() => {
+    if (musicRef.current !== undefined) {
+      //if isPlaying is true, play the music
+      if (isPlayingMusic) musicRef.current.play();
+      //if isPlaying is false, pause the music
+      else if (!isPlayingMusic) musicRef.current.pause();
+    }
+  });
 
   return (
     <div className="px-[15px] gap-x-[20px] py-[5px] row-start-11 row-end-12 col-start-1 col-end-[13] bg-[#212121] rounded-t-[15px] flex justify-between items-center">
-      <Audio source={playingMusic} ref={musicRef} />
-      <div className="min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center items-center hover:bg-[#383838] rounded-[10px]">
-        <MusicCoverImage src={cover} />
-        <MusicInfos
-          name={musicName}
-          singer={musicSinger}
-          singerPage={singerPage}
-          musicPage={musicPage}
-        />
-      </div>
-      <div className="flex sm:flex-grow gap-x-[15px]">
-        <div className="flex gap-x-[5px] justify-center items-center">
-          <NextPrevious kind="next" />
-          {isPlayingMusic ? (
-            <Pause
-              pauseMusic={() => {
-                musicRef.current.pause();
-              }}
+      {playingMusic && (
+        <>
+          <Audio source={playingMusic.link} ref={musicRef} />
+          <div className="min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center items-center hover:bg-[#383838] rounded-[10px]">
+            <MusicCoverImage src={playingMusic.cover} />
+            <MusicInfos
+              name={playingMusic.name}
+              singer={playingMusic.singer}
+              singerPage={playingMusic.singerPage}
+              musicPage={playingMusic.musicPage}
             />
-          ) : (
-            <Play
-              playMusic={() => {
-                musicRef.current.play();
-              }}
-            />
-          )}
-          <NextPrevious kind="previous" />
-        </div>
+          </div>
+          <div className="flex sm:flex-grow gap-x-[15px]">
+            <div className="flex gap-x-[5px] justify-center items-center">
+              <NextPrevious kind="next" />
+              {isPlayingMusic ? (
+                <Pause
+                  pauseMusic={() => {
+                    dispatch(musicActions.setIsPlaying(false));
+                  }}
+                />
+              ) : (
+                <Play
+                  playMusic={() => {
+                    dispatch(musicActions.setIsPlaying(true));
+                  }}
+                />
+              )}
+              <NextPrevious kind="previous" />
+            </div>
 
-        <div className="justify-around w-full hidden sm:flex">
-          <MusicTimeLine
-            setNewTime={(number) => {
-              console.log("in setNewTime func");
-              musicRef.current.currentTime = number;
-              dispatch(musicActions.setCurrentTime(number));
-            }}
-          />
-          <VolumeBar
-            mute={() => {
-              musicRef.current.muted = true;
-            }}
-            unmute={() => {
-              musicRef.current.muted = false;
-            }}
-            setVolume={(volume) => {
-              musicRef.current.volume = volume;
-              dispatch(musicActions.setCurrentVolume(volume));
-            }}
-          />
-        </div>
-      </div>
+            <div className="justify-around w-full hidden sm:flex">
+              <MusicTimeLine
+                setNewTime={(number) => {
+                  musicRef.current.currentTime = number;
+                  dispatch(musicActions.setCurrentTime(number));
+                }}
+              />
+              <VolumeBar
+                mute={() => {
+                  musicRef.current.muted = true;
+                }}
+                unmute={() => {
+                  musicRef.current.muted = false;
+                }}
+                setVolume={(volume) => {
+                  musicRef.current.volume = volume;
+                  dispatch(musicActions.setCurrentVolume(volume));
+                }}
+              />
+            </div>
+          </div>
+        </>
+      )}
     </div>
   );
 };

@@ -49,25 +49,6 @@ const genres = [
   "Chill",
 ];
 
-const musics = [
-  {
-    cover: "./safir-tafrigh.jpg",
-    singer: "safir",
-    name: "lalai",
-    listenTimes: "120k",
-    like: false,
-    isPlaying: false,
-  },
-  {
-    cover: "./bamdad-block.jpg",
-    singer: "bamdad",
-    name: "block",
-    listenTimes: "70k",
-    like: true,
-    isPlaying: true,
-  },
-];
-
 const artists = [
   {
     background: "./eminem.png",
@@ -130,5 +111,6 @@ export async function getStaticProps() {
     props: {
       musics,
     },
+    revalidate: 60,
   };
 }

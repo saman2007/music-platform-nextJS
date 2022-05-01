@@ -6,13 +6,13 @@ const NextPrevious = (props) => {
 
   if (kind === "next")
     return (
-      <span className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer">
+      <span className="hidden sm:flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer">
         <NextTrackIcon className="w-[30px] h-[30px] rotate-180 fill-white " />
       </span>
     );
   else if (kind === "previous")
     return (
-      <span className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer">
+      <span className="hidden sm:flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer">
         <NextTrackIcon className="w-[30px] h-[30px] fill-white" />
       </span>
     );

@@ -75,7 +75,7 @@ const MusicActionsBar = (props) => {
           musicPage={musicPage}
         />
       </div>
-      <div className="flex flex-grow gap-x-[15px]">
+      <div className="flex sm:flex-grow gap-x-[15px]">
         <div className="flex gap-x-[5px] justify-center items-center">
           <NextPrevious kind="next" />
           {isPlayingMusic ? (
@@ -94,7 +94,7 @@ const MusicActionsBar = (props) => {
           <NextPrevious kind="previous" />
         </div>
 
-        <div className="flex justify-around w-full">
+        <div className="justify-around w-full hidden sm:flex">
           <MusicTimeLine
             setNewTime={(number) => {
               console.log("in setNewTime func");

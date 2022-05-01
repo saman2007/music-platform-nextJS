@@ -19,26 +19,31 @@ const MusicActionsBar = () => {
 
   useEffect(() => {
     if (playingMusic) {
-      //if music ref is redy
-      if (musicRef) {
-        //when metadata of audio loaded, set the music duration
-        musicRef.current.onloadedmetadata = () => {
-          dispatch(musicActions.setDuration(musicRef.current.duration));
-        };
-        //on each time update, update the currentTime state
-        musicRef.current.ontimeupdate = () => {
-          dispatch(musicActions.setCurrentTime(musicRef.current.currentTime));
-        };
-        //when music is finished, the music will be paused
-        musicRef.current.onended = () => {
-          dispatch(musicActions.setIsPlaying(false));
-        };
-      }
+      //if isPlaying is true, play the music
+      if (isPlayingMusic) musicRef.current.play();
+      //if isPlaying is false, pause the music
+      else if (!isPlayingMusic) musicRef.current.pause();
+      //when metadata of audio loaded, set the music duration
+      musicRef.current.onloadedmetadata = () => {
+        dispatch(musicActions.setDuration(musicRef.current.duration));
+      };
+      //on each time update, update the currentTime state
+      musicRef.current.ontimeupdate = () => {
+        dispatch(musicActions.setCurrentTime(musicRef.current.currentTime));
+      };
+      //when music is finished, the music will be paused
+      musicRef.current.onended = () => {
+        dispatch(musicActions.setIsPlaying(false));
+      };
     }
   }, [playingMusic]);
 
   useEffect(() => {
     if (playingMusic) {
+      //if isPlaying is true, play the music
+      if (isPlayingMusic) musicRef.current.play();
+      //if isPlaying is false, pause the music
+      else if (!isPlayingMusic) musicRef.current.pause();
       const onSpaceClick = (e) => {
         //if user clicked on spacebar, music should be paused or play
         if (e.keyCode === 32) {
@@ -59,15 +64,6 @@ const MusicActionsBar = () => {
       };
     }
   }, [isPlayingMusic]);
-
-  useEffect(() => {
-    if (musicRef.current !== undefined) {
-      //if isPlaying is true, play the music
-      if (isPlayingMusic) musicRef.current.play();
-      //if isPlaying is false, pause the music
-      else if (!isPlayingMusic) musicRef.current.pause();
-    }
-  });
 
   return (
     <div className="px-[15px] gap-x-[20px] py-[5px] row-start-11 row-end-12 col-start-1 col-end-[13] bg-[#212121] rounded-t-[15px] flex justify-between items-center">

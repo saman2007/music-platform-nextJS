@@ -8,7 +8,7 @@ const VolumeBar = (props) => {
   const currentVolume = useSelector((state) => state.music.currentVolume);
 
   return (
-    <div className="flex justify-center items-center w-[20%] gap-x-[5px]">
+    <div className="hidden sm:flex justify-center items-center w-[20%] gap-x-[5px]">
       {isMuted ? (
         <VolumeMute unmute={props.unmute} />
       ) : (

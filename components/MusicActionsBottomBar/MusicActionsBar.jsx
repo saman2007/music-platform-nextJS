@@ -66,7 +66,7 @@ const MusicActionsBar = () => {
   }, [isPlayingMusic]);
 
   return (
-    <div className="px-[15px] gap-x-[20px] py-[5px] row-start-11 row-end-12 col-start-1 col-end-[13] bg-[#212121] rounded-t-[15px] flex justify-between items-center">
+    <div className="px-[15px] gap-x-[20px] py-[5px] relative row-start-11 row-end-12 col-start-1 col-end-[13] bg-[#212121] rounded-t-[15px] flex justify-between items-center">
       {playingMusic && (
         <>
           <Audio source={playingMusic.link} ref={musicRef} />
@@ -98,7 +98,7 @@ const MusicActionsBar = () => {
               <NextPrevious kind="previous" />
             </div>
 
-            <div className="justify-around w-full hidden sm:flex">
+            <div className="justify-around w-full flex">
               <MusicTimeLine
                 setNewTime={(number) => {
                   musicRef.current.currentTime = number;

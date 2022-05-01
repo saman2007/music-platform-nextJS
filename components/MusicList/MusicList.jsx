@@ -17,8 +17,8 @@ const MusicList = (props) => {
             <MusicInfos musicName={music.name} musicSinger={music.singer} />
           </div>
           <div className="flex-grow flex justify-end items-center gap-x-[10px]">
-            <MusicListenTimes times={music.listenTimes} />
-            <Actions isLike={music.like} />
+            <MusicListenTimes times={music.plays} />
+            <Actions isLike={false} />
           </div>
         </Music>
       ))}

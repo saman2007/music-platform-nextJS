@@ -3,7 +3,13 @@ import MusicActionsBar from "../components/MusicActionsBottomBar/MusicActionsBar
 import NavBar from "../components/Navigation/NavBar";
 import { Provider } from "react-redux";
 import store from "../store/ReduxStore";
+import { createClient } from "@supabase/supabase-js";
 import "../index.css";
+
+export const supabase = createClient(
+  process.env.NEXT_PUBLIC_API_URL,
+  process.env.NEXT_PUBLIC_API_KEY
+);
 
 function MyApp({ Component, pageProps }) {
   return (

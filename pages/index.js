@@ -2,6 +2,7 @@ import Genres from "../components/Genres/Genres";
 import MusicCollection from "../components/MusicCollectionCard/MusicCollection";
 import MusicList from "../components/MusicList/MusicList";
 import RecentArtists from "../components/RecentArtists/RecentArtists";
+import { supabase } from "./_app";
 
 //music collections infos
 const CollectionsInfos = [
@@ -98,7 +99,7 @@ const artists = [
   },
 ];
 
-export default function Home() {
+export default function Home(props) {
   return (
     <div className="row-start-2 row-end-[12] col-start-2 col-end-13 px-[15px] overflow-y-auto">
       <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
@@ -120,4 +121,14 @@ export default function Home() {
       </div>
     </div>
   );
+}
+
+export async function getStaticProps() {
+  const { data: musics, error } = await supabase.from("musics").select("*");
+
+  return {
+    props: {
+      musics,
+    },
+  };
 }

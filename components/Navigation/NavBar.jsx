@@ -7,6 +7,10 @@ import Logo from "./Logo";
 import { useRef, useState } from "react";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import TooltipContainer from "../Tooltip/TooltipContainer";
+import Like from "../MusicList/Actions/Like";
+import VolumeBar from "./VolumeBar";
+import { useDispatch, useSelector } from "react-redux";
+import musicActions from "../../store/MusicSlice";
 
 //basic styles for icons
 const iconsStyles = "w-[24px] h-[24px] transition duration-300 cursor-pointer";
@@ -15,6 +19,8 @@ const NavBar = () => {
   const optionsRef = useRef();
   const router = useRouter();
   const [showOptions, setShowOptions] = useState(false);
+  const currentVolume = useSelector((state) => state.music.currentVolume);
+  const dispatch = useDispatch();
   useOutSideClick(optionsRef, () => setShowOptions(false));
 
   return (
@@ -64,6 +70,18 @@ const NavBar = () => {
           />
         </div>
       </TooltipContainer>
+      <div className="flex-grow flex flex-col justify-end items-center">
+        <div className="h-[40%]">
+          <VolumeBar
+            callBack={(percent) => {
+              dispatch(musicActions.setCurrentVolume(percent / 100));
+            }}
+            position={currentVolume}
+            maxPosition={1}
+          />
+        </div>
+        <Like like={false} bar />
+      </div>
     </div>
   );
 };

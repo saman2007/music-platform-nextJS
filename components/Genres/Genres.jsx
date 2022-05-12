@@ -24,6 +24,9 @@ const Genres = (props) => {
                 if (genreIndex !== -1) {
                   let oldState = Array(...currentGenres);
                   oldState.splice(genreIndex, 1);
+                  
+                  //if no genre is selected, all genres should be selected
+                  if (oldState.length === 0) oldState.push("All genres");
                   return oldState;
                 }
 
@@ -31,6 +34,7 @@ const Genres = (props) => {
                 let oldGenres = prevState.includes("All genres")
                   ? [...prevState.slice(0, 0)]
                   : [...prevState];
+
                 return [...oldGenres, genre];
               });
             }}

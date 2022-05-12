@@ -4,42 +4,6 @@ import MusicList from "../components/MusicList/MusicList";
 import RecentArtists from "../components/RecentArtists/RecentArtists";
 import { supabase } from "./_app";
 
-//music collections infos
-const CollectionsInfos = [
-  {
-    id: "1",
-    bgImg: "/coll-cover-1",
-    color: "purple",
-    trackNumbers: "17",
-    title: "liked songs",
-    description: "your liked musics are here!",
-  },
-  {
-    id: "2",
-    bgImg: "/coll-cover-2",
-    color: "blue",
-    trackNumbers: "14",
-    title: "new songs",
-    description: "listen to newest songs!",
-  },
-  {
-    id: "3",
-    bgImg: "/coll-cover-3",
-    color: "orange",
-    trackNumbers: "10",
-    title: "your favorite artists",
-    description: "listen to your favorit artists songs!",
-  },
-  {
-    id: "4",
-    bgImg: "/coll-cover-4",
-    color: "light orange",
-    trackNumbers: "20",
-    title: "top rap songs",
-    description: "listen to top rap musics!",
-  },
-];
-
 const genres = [
   "Classic",
   "House",
@@ -84,13 +48,13 @@ export default function Home(props) {
   return (
     <div className="row-start-2 row-end-[12] col-start-2 col-end-13 px-[15px] overflow-y-auto">
       <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
-        {CollectionsInfos.map((data) => (
+        {props.playlists.map((data) => (
           <MusicCollection
             key={data.id}
-            bgImg={data.bgImg}
+            bgImg={data.cover}
             color={data.color}
-            trackNumbers={data.trackNumbers}
-            title={data.title}
+            trackNumbers={data.songs_number}
+            title={data.name}
             description={data.description}
           />
         ))}
@@ -105,11 +69,13 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const { data: musics, error } = await supabase.from("musics").select("*");
+  const { data: musics } = await supabase.from("musics").select("*");
+  let { data: playlists } = await supabase.from("playlists").select("*");
 
   return {
     props: {
       musics,
+      playlists,
     },
     revalidate: 60,
   };

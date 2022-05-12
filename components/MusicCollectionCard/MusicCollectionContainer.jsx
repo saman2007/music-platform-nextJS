@@ -23,7 +23,7 @@ const MusicCollectionContainer = (props) => {
     <div
       className={`${selectedBgColor} rounded-[20px] flex flex-col min-w-[250px] min-h-[300px] max-w-[250px] max-h-[300px] justify-between p-[10px]`}
       style={{
-        backgroundImage: `url("${bgImg}.png")`,
+        backgroundImage: `url("${bgImg}")`,
         backgroundSize: "contain",
         backgroundRepeat: "no-repeat",
         boxShadow: shadow,

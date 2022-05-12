@@ -1,22 +1,18 @@
-import { useSelector } from "react-redux";
-import VolumeMute from "./Actions/VolumeMute";
-import VolumeUp from "./Actions/VolumeUp";
+import { useDispatch, useSelector } from "react-redux";
 import Bar from "./Bar";
+import musicActions from "../../store/MusicSlice";
+import Volume from "./Actions/Volume";
 
-const VolumeBar = (props) => {
-  const isMuted = useSelector((state) => state.music.isMuted);
+const VolumeBar = () => {
   const currentVolume = useSelector((state) => state.music.currentVolume);
+  const dispatch = useDispatch();
 
   return (
     <div className="hidden sm:flex justify-center items-center w-[20%] gap-x-[5px]">
-      {isMuted ? (
-        <VolumeMute unmute={props.unmute} />
-      ) : (
-        <VolumeUp mute={props.mute} />
-      )}
+      <Volume />
       <Bar
         callBack={(percent) => {
-          props.setVolume(percent / 100);
+          dispatch(musicActions.setVolume(percent / 100));
         }}
         position={currentVolume}
         maxPosition={1}

@@ -8,8 +8,7 @@ const Play = (props) => {
   return (
     <span
       onClick={() => {
-        props.playMusic();
-        dispatch(musicActions.setIsPlaying(true));
+        dispatch(musicActions.playMusic());
       }}
       className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer"
     >

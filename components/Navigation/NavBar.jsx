@@ -11,6 +11,7 @@ import Like from "../MusicList/Actions/Like";
 import VolumeBar from "./VolumeBar";
 import { useDispatch, useSelector } from "react-redux";
 import musicActions from "../../store/MusicSlice";
+import Volume from "../MusicActionsBottomBar/Actions/Volume";
 
 //basic styles for icons
 const iconsStyles = "w-[24px] h-[24px] transition duration-300 cursor-pointer";
@@ -71,15 +72,18 @@ const NavBar = () => {
         </div>
       </TooltipContainer>
       <div className="flex-grow flex flex-col justify-end items-center">
-        <div className="h-[40%]">
+        <div className="h-[40%] mb-[10px]">
           <VolumeBar
             callBack={(percent) => {
-              dispatch(musicActions.setCurrentVolume(percent / 100));
+              dispatch(musicActions.setVolume(percent / 100));
             }}
             position={currentVolume}
             maxPosition={1}
           />
         </div>
+        <span className="sm:hidden">
+          <Volume />
+        </span>
         <Like like={false} bar />
       </div>
     </div>

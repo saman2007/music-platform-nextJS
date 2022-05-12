@@ -23,8 +23,7 @@ const MusicList = (props) => {
           onClickHandler={() => {
             //only if width is smaller than 640px, if user clicked on a music, play that music
             if (window.innerWidth <= 640) {
-              dispatch(musicActions.setCurrentMusic(music));
-              dispatch(musicActions.setIsPlaying(true));
+              dispatch(musicActions.initMusic(music));
             }
           }}
         >
@@ -37,13 +36,11 @@ const MusicList = (props) => {
             <Actions
               playHandler={() => {
                 //replace the current music with the clicked music
-                dispatch(musicActions.setCurrentMusic(music));
-                //play the music
-                dispatch(musicActions.setIsPlaying(true));
+                dispatch(musicActions.initMusic(music));
               }}
               pauseHandler={() => {
                 //pause the music
-                dispatch(musicActions.setIsPlaying(false));
+                dispatch(musicActions.pauseMusic());
               }}
               isLike={false}
               //if the music is playing and its name is qual to the playing name, display the pause button

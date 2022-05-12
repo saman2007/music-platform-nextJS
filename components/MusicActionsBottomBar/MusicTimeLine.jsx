@@ -1,6 +1,7 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Bar from "./Bar";
 import MobileBar from "./MobileBar";
+import musicActions from "../../store/MusicSlice";
 
 //a function to return a time that converted from seconds to minutes
 const getTime = (time) => {
@@ -13,10 +14,10 @@ const getTime = (time) => {
   })}`;
 };
 
-const MusicTimeLine = (props) => {
-  const { setNewTime } = props;
+const MusicTimeLine = () => {
   const currentTime = useSelector((state) => state.music.currentTime);
   const musicDuration = useSelector((state) => state.music.duration);
+  const dispatch = useDispatch();
 
   return (
     <>
@@ -27,7 +28,7 @@ const MusicTimeLine = (props) => {
             //calculate the new current time number of audio base on users clicked or moved percent
             const newTime = (percent / 100) * musicDuration;
             //setting the calculated time
-            setNewTime(newTime);
+            dispatch(musicActions.updateMusicTime(newTime));
           }}
           position={currentTime}
           maxPosition={musicDuration}

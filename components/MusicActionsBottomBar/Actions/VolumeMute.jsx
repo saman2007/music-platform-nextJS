@@ -2,14 +2,13 @@ import VolumeMuteIcon from "@heroicons/react/solid/VolumeOffIcon";
 import { useDispatch } from "react-redux";
 import musicActions from "../../../store/MusicSlice";
 
-const VolumeMute = (props) => {
+const VolumeMute = () => {
   const dispatch = useDispatch();
 
   return (
     <span
       onClick={() => {
-        props.unmute();
-        dispatch(musicActions.setIsMuted(false));
+        dispatch(musicActions.unmuteMusic());
       }}
       className="flex justify-center items-center  min-w-[30px] min-h-[30px] max-w-[30px] max-h-[30px] rounded-full hover:bg-[#383838] transition duration-300 cursor-pointer"
     >

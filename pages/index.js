@@ -56,12 +56,13 @@ export default function Home(props) {
             trackNumbers={data.songs_number}
             title={data.name}
             description={data.description}
+            playlistId={data.id}
           />
         ))}
       </div>
       <div className="w-full flex gap-x-[20px] flex-col items-center md:flex-row md:items-start mb-[20px]">
         <Genres genres={genres} />
-        <MusicList musics={props.musics} />
+        <MusicList musics={props.musics} playlistId={5} />
         <RecentArtists artists={artists} />
       </div>
     </div>
@@ -69,8 +70,17 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const { data: musics } = await supabase.from("musics").select("*");
-  let { data: playlists } = await supabase.from("playlists").select("*");
+  //get all the musics with a playlist array that contains 5
+  const { data: musics } = await supabase
+    .from("musics")
+    .select("*")
+    .contains("playlists", ["5"]);
+
+  //get all the playlists data with isFeature equal to true
+  let { data: playlists } = await supabase
+    .from("playlists")
+    .select("*")
+    .eq("isFeature", true);
 
   return {
     props: {

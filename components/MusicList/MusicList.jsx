@@ -6,24 +6,27 @@ import MusicListContainer from "./MusicListContainer";
 import MusicListenTimes from "./MusicListenTimes";
 import { useDispatch } from "react-redux";
 import musicActions from "../../store/MusicSlice";
-import { useSelector } from "react-redux";
 
 const MusicList = (props) => {
-  const { musics } = props;
+  const { musics, playlistId } = props;
   const dispatch = useDispatch();
-  const isPlaying = useSelector((state) => state.music.isPlaying);
-  const currentMusic = useSelector((state) => state.music.currentMusic);
 
   return (
     <MusicListContainer>
-      {musics.map((music) => (
+      {musics.map((music, index) => (
         <Music
           key={music.name + music.singer}
           isPlaying={music.isPlaying}
           onClickHandler={() => {
             //only if width is smaller than 640px, if user clicked on a music, play that music
             if (window.innerWidth <= 640) {
-              dispatch(musicActions.initMusic(music));
+              dispatch(
+                musicActions.setPlaylist({
+                  playlist: musics,
+                  musicIndex: index,
+                  playlistId,
+                })
+              );
             }
           }}
         >
@@ -36,15 +39,21 @@ const MusicList = (props) => {
             <Actions
               playHandler={() => {
                 //replace the current music with the clicked music
-                dispatch(musicActions.initMusic(music));
+                dispatch(
+                  musicActions.setPlaylist({
+                    playlist: musics,
+                    musicIndex: index,
+                    playlistId: 5,
+                  })
+                );
               }}
               pauseHandler={() => {
                 //pause the music
                 dispatch(musicActions.pauseMusic());
               }}
               isLike={false}
-              //if the music is playing and its name is qual to the playing name, display the pause button
-              isPlaying={isPlaying && currentMusic.name === music.name}
+              musicId={music.id}
+              playlistId={playlistId}
             />
           </div>
         </Music>

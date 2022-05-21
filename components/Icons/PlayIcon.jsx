@@ -5,6 +5,7 @@ const PlayIcon = (props) => {
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{ width, height, minHeight: height, minWidth: width }}
+      className="cursor-pointer"
       fill={color}
       viewBox="0 0 512 512"
       onClick={onClickHandler}

@@ -13,15 +13,14 @@ import VolumeBar from "./VolumeBar";
 const MusicActionsBar = () => {
   const playingMusic = useSelector((state) => state.music.currentMusic);
   const isPlayingMusic = useSelector((state) => state.music.isPlaying);
-  const music = useSelector((state) => state.music.musicEl);
   const dispatch = useDispatch();
 
   useEffect(() => {
     dispatch(
       musicActions.addListeners({
         //when metadata of audio loaded, set the music duration
-        onloadedmetadata: () => {
-          dispatch(musicActions.setDuration(music.duration));
+        onloadedmetadata: (e) => {
+          dispatch(musicActions.setDuration(e.target.duration));
         },
         //on each time update, update the currentTime state
         ontimeupdate: () => {
@@ -29,7 +28,7 @@ const MusicActionsBar = () => {
         },
         //when music is finished, the music will be paused
         onended: () => {
-          dispatch(musicActions.pauseMusic());
+          dispatch(musicActions.playNextMusicAuto());
         },
       })
     );
@@ -74,9 +73,9 @@ const MusicActionsBar = () => {
           </div>
           <div className="flex sm:flex-grow gap-x-[15px]">
             <div className="flex gap-x-[5px] justify-center items-center">
-              <NextPrevious kind="next" />
-              {isPlayingMusic ? <Pause /> : <Play />}
               <NextPrevious kind="previous" />
+              {isPlayingMusic ? <Pause /> : <Play />}
+              <NextPrevious kind="next" />
             </div>
 
             <div className="justify-around w-full flex">

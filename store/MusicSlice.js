@@ -1,6 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
+import { supabase } from "../pages/_app";
 
-const MusicSlice = createSlice({
+const musicSlice = createSlice({
   name: "music",
   initialState: {
     musicEl: typeof Audio !== "undefined" && new Audio(),
@@ -11,6 +12,10 @@ const MusicSlice = createSlice({
     isDragging: false,
     isMuted: false,
     currentVolume: 1,
+    playlist: null,
+    playlistId: null,
+    playingMusicIndex: null,
+    abortController: null,
   },
   reducers: {
     //to set the music duration
@@ -69,17 +74,95 @@ const MusicSlice = createSlice({
     },
     //to add onloadedmetadata, ontimeupdate and onended event to music
     addListeners(state, action) {
-      state.musicEl.onloadedmetadata = action.payload.onloadedmetadata;
-      state.musicEl.ontimeupdate = action.payload.ontimeupdate;
-      state.musicEl.onended = action.payload.onended;
+      for (const key in action.payload) {
+        state.musicEl[key] = action.payload[key];
+      }
     },
     //to update both music current time state and playing music
     updateMusicTime(state, action) {
       state.musicEl.currentTime = action.payload;
-      state.currentTime = action.payload;
+      state.currentTime = state.musicEl.currentTime;
+    },
+    //to set new playlist
+    setPlaylist(state, action) {
+      state.playlist = action.payload.playlist;
+      state.playlistId = action.payload.playlistId;
+      state.musicEl.src =
+        action.payload.playlist[action.payload.musicIndex].link;
+      state.musicEl.play();
+      state.isPlaying = true;
+      state.currentMusic = action.payload.playlist[action.payload.musicIndex];
+      state.playingMusicIndex = action.payload.musicIndex;
+    },
+    //to play next music automatically when music is done
+    playNextMusicAuto(state) {
+      //if there are still other musics to play in a playlist, play next music
+      if (state.playlist.length - 1 > state.playingMusicIndex) {
+        state.playingMusicIndex++;
+        state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+        state.musicEl.play();
+        state.currentMusic = state.playlist[state.playingMusicIndex];
+        //if the current music is the last music of playlist and its done, pause the music
+      } else {
+        state.musicEl.pause();
+        state.isPlaying = false;
+      }
+    },
+    //to play next music manually
+    playNextMusic(state) {
+      //if the playing music is the last music of playlist, play the first music of playlist
+      if (state.playlist.length - 1 === state.playingMusicIndex)
+        state.playingMusicIndex = 0;
+      //else, play the next music
+      else state.playingMusicIndex++;
+
+      state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+      if (state.isPlaying) state.musicEl.play();
+      else state.musicEl.pause();
+      state.currentMusic = state.playlist[state.playingMusicIndex];
+    },
+    //to play previous music manually
+    playPreviousMusic(state) {
+      //if the playing music is the first music of playlist, play the last music of playlist
+      if (state.playingMusicIndex === 0)
+        state.playingMusicIndex = state.playlist.length - 1;
+      //else play the previous music
+      else state.playingMusicIndex--;
+
+      state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+      if (state.isPlaying) state.musicEl.play();
+      else state.musicEl.pause();
+      state.currentMusic = state.playlist[state.playingMusicIndex];
+    },
+    //to abort the sending request and replace a new abort controller
+    replaceNewAbortController(state) {
+      if (state.abortController) state.abortController.abort();
+
+      state.abortController = new AbortController();
     },
   },
 });
 
-export const MusicReducers = MusicSlice.reducer;
-export default MusicSlice.actions;
+//to get the clicked playlist
+export const getPlaylist = (playlistId) => {
+  return async (dispatch, getStore) => {
+    //abort the sending request and replace a new abort controller
+    dispatch(musicSlice.actions.replaceNewAbortController());
+
+    //get the musics datas of the clicked playlist
+    let { data: playlist, error } = await supabase
+      .from("musics")
+      .select("*")
+      .contains("playlists", [playlistId])
+      .abortSignal(getStore().music.abortController.signal);
+
+      //if request doesnt have error, set the playlist
+    if (!error)
+      dispatch(
+        musicSlice.actions.setPlaylist({ playlist, musicIndex: 0, playlistId })
+      );
+  };
+};
+
+export const MusicReducers = musicSlice.reducer;
+export default musicSlice.actions;

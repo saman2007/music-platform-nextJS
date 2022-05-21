@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Genres from "../components/Genres/Genres";
 import MusicCollection from "../components/MusicCollectionCard/MusicCollection";
 import MusicList from "../components/MusicList/MusicList";
@@ -45,8 +46,14 @@ const artists = [
 ];
 
 export default function Home(props) {
+  const isInitialized = useSelector((state) => state.music.isInitialized);
+
   return (
-    <div className="row-start-2 row-end-[12] col-start-2 col-end-13 px-[15px] overflow-y-auto">
+    <div
+      className={`row-start-2 ${
+        isInitialized ? "row-end-[12]" : "row-end-[13]"
+      } col-start-2 col-end-13 px-[15px] overflow-y-auto`}
+    >
       <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
         {props.playlists.map((data) => (
           <MusicCollection

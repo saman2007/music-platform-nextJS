@@ -16,6 +16,7 @@ const musicSlice = createSlice({
     playlistId: null,
     playingMusicIndex: null,
     abortController: null,
+    isInitialized: false,
   },
   reducers: {
     //to set the music duration
@@ -32,6 +33,7 @@ const musicSlice = createSlice({
       state.currentMusic = action.payload;
       state.musicEl.play();
       state.isPlaying = true;
+      state.isInitialized = true;
     },
     //to play a music
     playMusic(state) {
@@ -93,6 +95,7 @@ const musicSlice = createSlice({
       state.isPlaying = true;
       state.currentMusic = action.payload.playlist[action.payload.musicIndex];
       state.playingMusicIndex = action.payload.musicIndex;
+      state.isInitialized = true;
     },
     //to play next music automatically when music is done
     playNextMusicAuto(state) {
@@ -156,7 +159,7 @@ export const getPlaylist = (playlistId) => {
       .contains("playlists", [playlistId])
       .abortSignal(getStore().music.abortController.signal);
 
-      //if request doesnt have error, set the playlist
+    //if request doesnt have error, set the playlist
     if (!error)
       dispatch(
         musicSlice.actions.setPlaylist({ playlist, musicIndex: 0, playlistId })

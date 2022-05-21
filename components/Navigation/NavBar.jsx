@@ -21,11 +21,16 @@ const NavBar = () => {
   const router = useRouter();
   const [showOptions, setShowOptions] = useState(false);
   const currentVolume = useSelector((state) => state.music.currentVolume);
+  const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
   useOutSideClick(optionsRef, () => setShowOptions(false));
 
   return (
-    <div className="h-full row-start-1 row-end-[12] col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]">
+    <div
+      className={`h-full row-start-1 ${
+        isInitialized ? "row-end-[12]" : "row-end-[13]"
+      } col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]`}
+    >
       <Logo />
       <Link href="/" passHref>
         <TooltipContainer tooltipText="home">

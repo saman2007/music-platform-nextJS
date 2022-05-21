@@ -13,6 +13,7 @@ import VolumeBar from "./VolumeBar";
 const MusicActionsBar = () => {
   const playingMusic = useSelector((state) => state.music.currentMusic);
   const isPlayingMusic = useSelector((state) => state.music.isPlaying);
+  const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -59,7 +60,13 @@ const MusicActionsBar = () => {
   }, [isPlayingMusic]);
 
   return (
-    <div className="px-[15px] gap-x-[20px] py-[5px] relative row-start-11 row-end-12 col-start-1 col-end-[13] bg-[#212121] rounded-t-[15px] flex justify-between items-center">
+    <div
+      className={`relative bg-[#212121] rounded-t-[15px] flex justify-between items-center transition-all duration-300 ${
+        isInitialized
+          ? "bottom-0 row-start-11 row-end-12 col-start-1 col-end-[13] px-[15px] gap-x-[20px] py-[5px]"
+          : "-bottom-full"
+      }`}
+    >
       {playingMusic && (
         <>
           <div className="min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center items-center hover:bg-[#383838] rounded-[10px]">

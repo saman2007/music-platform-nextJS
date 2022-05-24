@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { supabase } from "../pages/_app";
+import notificatinActions from "./NotificatinSlice";
 
 const musicSlice = createSlice({
   name: "music",
@@ -152,6 +153,11 @@ export const getPlaylist = (playlistId) => {
     //abort the sending request and replace a new abort controller
     dispatch(musicSlice.actions.replaceNewAbortController());
 
+    //set the situation of notification
+    dispatch(
+      notificatinActions.setSituation({ type: "loading", text: "Loading..." })
+    );
+
     //get the musics datas of the clicked playlist
     let { data: playlist, error } = await supabase
       .from("musics")
@@ -160,10 +166,29 @@ export const getPlaylist = (playlistId) => {
       .abortSignal(getStore().music.abortController.signal);
 
     //if request doesnt have error, set the playlist
-    if (!error)
+    if (!error) {
       dispatch(
         musicSlice.actions.setPlaylist({ playlist, musicIndex: 0, playlistId })
       );
+
+      dispatch(
+        notificatinActions.setSituation({
+          type: "success",
+          text: "playlist loaded!",
+        })
+      );
+    } else if (error) {
+      dispatch(
+        notificatinActions.setSituation({
+          type: "error",
+          text: "failed to load playlist. please try again.",
+        })
+      );
+    }
+
+    setTimeout(() => {
+      dispatch(notificatinActions.removeSituation());
+    }, 3000);
   };
 };
 

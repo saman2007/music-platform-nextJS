@@ -33,18 +33,20 @@ const NavBar = () => {
     >
       <Logo />
       <Link href="/" passHref>
-        <TooltipContainer tooltipText="home">
-          <a href="/" className="mb-[15px]">
-            <HomeIcon
-              className={`${iconsStyles} ${
-                //conditionally change the icons color (active the icon)
-                router.pathname === "/"
-                  ? "text-[#fafafa]"
-                  : "text-[#828282] hover:text-[#fafafa]"
-              }`}
-            />
-          </a>
-        </TooltipContainer>
+        <a href="/" className="mb-[15px]">
+          <TooltipContainer tooltipText="home">
+            <span>
+              <HomeIcon
+                className={`${iconsStyles} ${
+                  //conditionally change the icons color (active the icon)
+                  router.pathname === "/"
+                    ? "text-[#fafafa]"
+                    : "text-[#828282] hover:text-[#fafafa]"
+                }`}
+              />
+            </span>
+          </TooltipContainer>
+        </a>
       </Link>
 
       <Link href="/history" passHref>

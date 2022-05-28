@@ -16,7 +16,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <Provider store={store}>
       <Notification />
-      <div className="overflow-hidden w-[100vw] h-[100vh] select-none bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]">
+      <div className=" relative overflow-hidden w-[100vw] h-[100vh] select-none bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]">
         <Header />
         <NavBar />
         <MusicActionsBar />

@@ -8,11 +8,11 @@ import { useDispatch } from "react-redux";
 import musicActions from "../../store/MusicSlice";
 
 const MusicList = (props) => {
-  const { musics, playlistId } = props;
+  const { musics, playlistId, title } = props;
   const dispatch = useDispatch();
 
   return (
-    <MusicListContainer>
+    <MusicListContainer title={title}>
       {musics.map((music, index) => (
         <Music
           key={music.name + music.singer}
@@ -43,7 +43,7 @@ const MusicList = (props) => {
                   musicActions.setPlaylist({
                     playlist: musics,
                     musicIndex: index,
-                    playlistId: 5,
+                    playlistId: playlistId,
                   })
                 );
               }}

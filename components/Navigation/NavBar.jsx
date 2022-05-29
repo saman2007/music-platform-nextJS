@@ -32,7 +32,7 @@ const NavBar = () => {
       } col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]`}
     >
       <Logo />
-      <Link href="/" passHref>
+      <Link href="/" passHref prefetch={false}>
         <a href="/" className="mb-[15px]">
           <TooltipContainer tooltipText="home">
             <span>
@@ -49,7 +49,7 @@ const NavBar = () => {
         </a>
       </Link>
 
-      <Link href="/history" passHref>
+      <Link href="/history" passHref prefetch>
         <TooltipContainer tooltipText="history">
           <a href="/history" className="mb-[15px]">
             <ClockIcon

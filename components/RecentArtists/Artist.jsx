@@ -12,7 +12,7 @@ const Artist = (props) => {
         borderRadius: radius,
       }}
     >
-      <Link href={page}>
+      <Link href={page} prefetch={false}>
         <a className="w-full h-full inline-block"></a>
       </Link>
     </div>

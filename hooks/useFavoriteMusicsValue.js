@@ -9,14 +9,18 @@ const useFavoriteMusicsValue = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //if favorite musics state is null, initial the state
-    if (!favoriteMusics) {
-      dispatch(
-        favoriteMusicsAc.initFavoriteMusics(
-          JSON.parse(localStorage.getItem("favorite_musics"))
-        )
-      );
+    //a function to check the local storage
+    function checkLS() {
+      const lSDatas = localStorage.getItem("favorite_musics");
+
+      //if there is no item with favorite_musics name, initialize the local storage
+      if (!lSDatas) {
+        localStorage.setItem("favorite_musics", JSON.stringify([]));
+      }
+
+      dispatch(favoriteMusicsAc.initFavoriteMusics(JSON.parse(lSDatas)));
     }
+    checkLS();
   }, []);
 
   return {

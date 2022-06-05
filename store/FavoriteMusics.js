@@ -27,7 +27,11 @@ const favoriteMusicsSlice = createSlice({
     },
     //to initialize the favorite musics state
     initFavoriteMusics: (state, action) => {
-      state.favoriteMusics = action.payload;
+      if (
+        JSON.stringify(state.favoriteMusics) !== JSON.stringify(action.payload)
+      ) {
+        state.favoriteMusics = action.payload;
+      }
     },
     //to replace the local storage and favorite musics state datas
     replaceLSDatas: (state, action) => {

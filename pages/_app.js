@@ -1,22 +1,11 @@
 import Header from "../components/Header/Header";
 import MusicActionsBar from "../components/MusicActionsBottomBar/MusicActionsBar";
 import NavBar from "../components/Navigation/NavBar";
-import { Provider, useDispatch } from "react-redux";
+import { Provider } from "react-redux";
 import store from "../store/ReduxStore";
 import { createClient } from "@supabase/supabase-js";
 import "../index.css";
 import Notification from "../components/notification/Notification";
-import { useEffect } from "react";
-
-//a function to check the local storage
-function checkLS() {
-  const lSDatas = localStorage.getItem("favorite_musics");
-  
-  //if there is no item with favorite_musics name, initialize the local storage
-  if (!lSDatas) {
-    localStorage.setItem("favorite_musics", JSON.stringify([]));
-  }
-}
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,
@@ -24,10 +13,6 @@ export const supabase = createClient(
 );
 
 function MyApp({ Component, pageProps }) {
-  useEffect(() => {
-    checkLS();
-  }, []);
-
   return (
     <Provider store={store}>
       <Notification />

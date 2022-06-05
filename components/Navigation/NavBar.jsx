@@ -1,5 +1,5 @@
 import { useRouter } from "next/router";
-import { HomeIcon } from "@heroicons/react/solid";
+import { HeartIcon, HomeIcon } from "@heroicons/react/solid";
 import { ClockIcon } from "@heroicons/react/solid";
 import { DotsHorizontalIcon } from "@heroicons/react/solid";
 import Link from "next/link";
@@ -7,11 +7,11 @@ import Logo from "./Logo";
 import { useRef, useState } from "react";
 import useOutSideClick from "../../hooks/useOutSideClick";
 import TooltipContainer from "../Tooltip/TooltipContainer";
-import Like from "../MusicList/Actions/Like";
 import VolumeBar from "./VolumeBar";
 import { useDispatch, useSelector } from "react-redux";
 import musicActions from "../../store/MusicSlice";
 import Volume from "../MusicActionsBottomBar/Actions/Volume";
+import Like from "./Like";
 
 //basic styles for icons
 const iconsStyles = "w-[24px] h-[24px] transition duration-300 cursor-pointer";
@@ -33,7 +33,7 @@ const NavBar = () => {
     >
       <Logo />
       <Link href="/" passHref prefetch={false}>
-        <a href="/" className="mb-[15px]">
+        <a className="mb-[15px]">
           <TooltipContainer tooltipText="home">
             <span>
               <HomeIcon
@@ -48,7 +48,22 @@ const NavBar = () => {
           </TooltipContainer>
         </a>
       </Link>
-
+      <Link href="/favorite-musics" passHref prefetch={false}>
+        <a className="mb-[15px]">
+          <TooltipContainer tooltipText="favorite musics">
+            <span>
+              <HeartIcon
+                className={`${iconsStyles} ${
+                  //conditionally change the icons color (active the icon)
+                  router.pathname === "/favorite-musics"
+                    ? "text-[#fafafa]"
+                    : "text-[#828282] hover:text-[#fafafa]"
+                }`}
+              />
+            </span>
+          </TooltipContainer>
+        </a>
+      </Link>
       <Link href="/history" passHref prefetch>
         <TooltipContainer tooltipText="history">
           <a href="/history" className="mb-[15px]">
@@ -91,7 +106,7 @@ const NavBar = () => {
         <span className="sm:hidden">
           <Volume />
         </span>
-        <Like like={false} bar />
+        <Like />
       </div>
     </div>
   );

@@ -192,5 +192,5 @@ export const getPlaylist = (playlistId) => {
   };
 };
 
-export const MusicReducers = musicSlice.reducer;
+export const musicReducers = musicSlice.reducer;
 export default musicSlice.actions;

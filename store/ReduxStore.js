@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { MusicReducers } from "./MusicSlice";
-import { NotificationReducers } from "./NotificatinSlice";
+import { favoriteMusicsReducers } from "./FavoriteMusics";
+import { musicReducers } from "./MusicSlice";
+import { notificationReducers } from "./NotificatinSlice";
 
 const store = configureStore({
   reducer: {
-    music: MusicReducers,
-    notification: NotificationReducers,
+    music: musicReducers,
+    notification: notificationReducers,
+    favoriteMusics: favoriteMusicsReducers,
   },
 });
 

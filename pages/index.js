@@ -69,7 +69,11 @@ export default function Home(props) {
       </div>
       <div className="w-full flex gap-x-[20px] flex-col items-center md:flex-row md:items-start mb-[20px]">
         <Genres genres={genres} />
-        <MusicList musics={props.musics} playlistId={5} title />
+        <MusicList
+          musics={props.musics}
+          playlistId={5}
+          title={"Tracks of the Week"}
+        />
         <RecentArtists artists={artists} />
       </div>
     </div>

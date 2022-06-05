@@ -51,9 +51,9 @@ const MusicList = (props) => {
                 //pause the music
                 dispatch(musicActions.pauseMusic());
               }}
-              isLike={false}
               musicId={music.id}
               playlistId={playlistId}
+              music={music}
             />
           </div>
         </Music>

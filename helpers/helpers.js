@@ -11,11 +11,11 @@ const isInitialized = (item) => {
 //a function to merge an old state with updated state
 const getUpdatedState = (oldState, newState) => {
   oldState = JSON.parse(JSON.stringify(oldState));
-  newState.forEach((value, index) => {
+  newState.forEach((value) => {
     const findedIndex = oldState.findIndex((data) => data.id === value.id);
-    if (findedIndex !== -1) oldState[index] = { ...oldState[index], ...value };
+    if (findedIndex !== -1)
+      oldState[findedIndex] = { ...oldState[findedIndex], ...value };
   });
-
   return oldState;
 };
 

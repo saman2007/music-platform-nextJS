@@ -4,12 +4,10 @@ import { isInitialized } from "../helpers/helpers";
 import recentMusicsAc from "../store/RecentMusicsSlice";
 
 const useRecentMusicsValue = () => {
-  const recentMusics = useSelector(
-    (store) => store.recentMusics.recentMusics
-  );
+  const recentMusics = useSelector((store) => store.recentMusics.recentMusics);
   const updateTime = useSelector((store) => store.recentMusics.updateTime);
   const freezedMusics = useMemo(
-    () => recentMusics,
+    () => (recentMusics ? recentMusics : []),
     [!!recentMusics, updateTime]
   );
   const dispatch = useDispatch();

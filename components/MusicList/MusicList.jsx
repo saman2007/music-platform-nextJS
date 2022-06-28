@@ -15,7 +15,7 @@ const MusicList = (props) => {
     <MusicListContainer title={title}>
       {musics.map((music, index) => (
         <Music
-          key={music.name + music.singer}
+          key={index}
           isPlaying={music.isPlaying}
           onClickHandler={() => {
             //only if width is smaller than 640px, if user clicked on a music, play that music
@@ -34,9 +34,17 @@ const MusicList = (props) => {
             <MusicCover imageSrc={music.cover} />
             <MusicInfos musicName={music.name} musicSinger={music.singer} />
           </div>
+          {props.history ? (
+            <div className="lex-grow flex items-center justify-center">
+              <p className="text-[12px] text-[#5b5b5b]">{music.date}</p>
+            </div>
+          ) : (
+            ""
+          )}
           <div className="flex-grow flex justify-end items-center gap-x-[10px]">
             <MusicListenTimes times={music.plays} />
             <Actions
+            history={props.history}
               playHandler={() => {
                 //replace the current music with the clicked music
                 dispatch(

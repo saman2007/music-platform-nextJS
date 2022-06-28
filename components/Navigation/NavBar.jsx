@@ -64,18 +64,20 @@ const NavBar = () => {
           </TooltipContainer>
         </a>
       </Link>
-      <Link href="/history" passHref prefetch>
-        <TooltipContainer tooltipText="history">
-          <a href="/history" className="mb-[15px]">
-            <ClockIcon
-              className={`${iconsStyles} ${
-                router.pathname === "/history"
-                  ? "text-[#fafafa]"
-                  : "text-[#828282] hover:text-[#fafafa]"
-              }`}
-            />
-          </a>
-        </TooltipContainer>
+      <Link href="/recent-musics" passHref prefetch>
+        <a href="/recent-musics" className="mb-[15px]">
+          <TooltipContainer tooltipText="recent">
+            <span>
+              <ClockIcon
+                className={`${iconsStyles} ${
+                  router.pathname === "/recent-musics"
+                    ? "text-[#fafafa]"
+                    : "text-[#828282] hover:text-[#fafafa]"
+                }`}
+              />
+            </span>
+          </TooltipContainer>
+        </a>
       </Link>
       <TooltipContainer tooltipText="options">
         <div

@@ -1,25 +1,26 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import MusicList from "../components/MusicList/MusicList";
-import useFavoriteMusicsValue from "../hooks/useFavoriteMusicsValue";
-import favoriteMusicsAc from "../store/FavoriteMusics";
+import useRecentMusicsValue from "../hooks/useRecentMusicsValue";
 import notificationAc from "../store/NotificatinSlice";
+import recentMusicsAc from "../store/RecentMusicsSlice";
 import { supabase } from "./_app";
+import { getUpdatedState } from "../helpers/helpers";
 
-const FavoriteMusics = () => {
-  const { musics, isInited } = useFavoriteMusicsValue();
+const recentMusicsPage = () => {
+  const { musics, isInited } = useRecentMusicsValue();
   const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //only if musics state is not empty and it is ready to use, get the newest datas of favorite musics
+    //only if musics state is not empty and it is ready to use, get the newest datas of recent musics
     if (musics.length !== 0 && isInited) {
       const getNewestData = async () => {
         //display the loading notification
         dispatch(
           notificationAc.setSituation({
             type: "loading",
-            text: "getting the newest favorite musics data...",
+            text: "getting the newest recent musics data...",
           })
         );
 
@@ -40,7 +41,7 @@ const FavoriteMusics = () => {
           dispatch(
             notificationAc.setSituation({
               type: "success",
-              text: "your favorite musics are up to date!",
+              text: "your recent musics are up to date!",
             })
           );
         } else if (error) {
@@ -54,7 +55,9 @@ const FavoriteMusics = () => {
 
         //if the newest datas are not equal to old datas, update the old datas
         if (JSON.stringify(data) !== JSON.stringify(musics) && !error) {
-          dispatch(favoriteMusicsAc.replaceLSDatas(data));
+          dispatch(
+            recentMusicsAc.replaceLSDatas(getUpdatedState(musics, data))
+          );
         }
 
         //remove the displaying notification after 3 seconds
@@ -77,9 +80,10 @@ const FavoriteMusics = () => {
         (musics.length !== 0 ? (
           <div className="w-full sm:w-[500px] md:w-[700px] h-full pt-[50px]">
             <MusicList
+              history
               musics={musics}
               playlistId={5}
-              title={"Your favorite musics"}
+              title={"your recent musics"}
             />
           </div>
         ) : musics.length === 0 ? (
@@ -91,4 +95,4 @@ const FavoriteMusics = () => {
   );
 };
 
-export default FavoriteMusics;
+export default recentMusicsPage;

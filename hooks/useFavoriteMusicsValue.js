@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { isInitialized } from "../helpers/helpers";
 import favoriteMusicsAc from "../store/FavoriteMusics";
 
 const useFavoriteMusicsValue = () => {
@@ -9,18 +10,8 @@ const useFavoriteMusicsValue = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    //a function to check the local storage
-    function checkLS() {
-      const lSDatas = localStorage.getItem("favorite_musics");
-
-      //if there is no item with favorite_musics name, initialize the local storage
-      if (!lSDatas) {
-        localStorage.setItem("favorite_musics", JSON.stringify([]));
-      }
-
-      dispatch(favoriteMusicsAc.initFavoriteMusics(JSON.parse(lSDatas)));
-    }
-    checkLS();
+    if (isInitialized("favorite_musics"))
+      dispatch(favoriteMusicsAc.initFavoriteMusics());
   }, []);
 
   return {

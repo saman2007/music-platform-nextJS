@@ -6,6 +6,7 @@ import MusicListContainer from "./MusicListContainer";
 import MusicListenTimes from "./MusicListenTimes";
 import { useDispatch } from "react-redux";
 import musicActions from "../../store/MusicSlice";
+import recentMusicsActions from "../../store/RecentMusicsSlice";
 
 const MusicList = (props) => {
   const { musics, playlistId, title } = props;
@@ -17,6 +18,7 @@ const MusicList = (props) => {
         <Music
           key={index}
           isPlaying={music.isPlaying}
+          music={music}
           onClickHandler={() => {
             //only if width is smaller than 640px, if user clicked on a music, play that music
             if (window.innerWidth <= 640) {
@@ -44,7 +46,7 @@ const MusicList = (props) => {
           <div className="flex-grow flex justify-end items-center gap-x-[10px]">
             <MusicListenTimes times={music.plays} />
             <Actions
-            history={props.history}
+              history={props.history}
               playHandler={() => {
                 //replace the current music with the clicked music
                 dispatch(

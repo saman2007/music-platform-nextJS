@@ -16,28 +16,28 @@ const genres = [
 
 const artists = [
   {
-    background: "./eminem.png",
+    background: "/eminem.png",
     color: "#f50f0d",
     page: "/artist/eminem",
     radius: "10px 5px 5px 5px",
     id: "1",
   },
   {
-    background: "./drake.png",
+    background: "/drake.png",
     color: "#d6b026",
     page: "/artist/drake",
     radius: "5px 10px 5px 5px",
     id: "2",
   },
   {
-    background: "./tentasion.png",
+    background: "/tentasion.png",
     color: "#ffb05f",
     page: "/artist/tentasion",
     radius: "5px 5px 5px 10px",
     id: "3",
   },
   {
-    background: "./2-pac.png",
+    background: "/2-pac.png",
     color: "#008b9a",
     page: "/artist/2-pac",
     radius: "5px 5px 10px 5px",

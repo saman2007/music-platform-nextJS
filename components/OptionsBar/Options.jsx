@@ -45,7 +45,7 @@ const Options = (props) => {
               : situation === "open"
               ? "open"
               : ""
-          } transition-all origin-top-left duration-[400] absolute rounded-[20px] bg-[#0d0d0d] border border-[#1e1e1e] border-solid w-[250px] overflow-y-auto h-[250px]`}
+          } transition-all z-10 origin-top-left duration-[400] absolute rounded-[20px] bg-[#0d0d0d] border border-[#1e1e1e] border-solid w-[250px] overflow-y-auto h-[250px]`}
           style={{ left: offset.x + 25 + "px", top: offset.y + "px" }}
         >
           <OptionsItems />

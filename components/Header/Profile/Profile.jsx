@@ -1,5 +1,6 @@
 import ProfileImg from "../../../public/my-photo.jpg";
 import ChevronDownIcon from "@heroicons/react/solid/ChevronDownIcon";
+import Image from "next/image";
 
 const Profile = () => {
   return (
@@ -7,10 +8,14 @@ const Profile = () => {
       <div className="hidden md:flex justify-center items-center w-full">
         <ChevronDownIcon className="w-[20px] h-[20px] text-[#6d6d6d] cursor-pointer" />
       </div>
-      <img
-        src={ProfileImg.src}
-        className="h-full w-full min-w-full max-w-full md:w-2/4 md:min-w-[50%] md:max-w-[50%] rounded-full"
-      />
+      <div className="relative h-full w-full min-w-full max-w-full md:w-2/4 md:min-w-[50%] md:max-w-[50%]">
+        <Image
+          src={ProfileImg.src}
+          objectFit="fill"
+          layout="fill"
+          className="h-full w-full rounded-full"
+        />
+      </div>
     </div>
   );
 };

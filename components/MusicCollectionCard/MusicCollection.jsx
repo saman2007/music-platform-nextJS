@@ -17,7 +17,7 @@ const MusicCollection = (props) => {
   return (
     <MusicCollectionContainer bgImg={bgImg} bgColor={color}>
       <TrackNumbers number={trackNumbers} />
-      <div className={`w-full flex gap-[8px] items-center`}>
+      <div className={`w-full flex gap-[8px] items-center p-[10px] z-[2]`}>
         {/* current playlist id is equal to this playlist id and a music is playing,
         it means this play list is playing and display pause icon, else it means this
         playlist is not playing and display play icon */}

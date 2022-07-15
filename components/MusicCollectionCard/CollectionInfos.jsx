@@ -3,7 +3,7 @@ const CollectionInfos = (props) => {
   const { title, description } = props;
 
   return (
-    <div className="flex-grow w-full overflow-hidden ">
+    <div className="flex-grow w-full overflow-hidden">
       <h2 className="text-[16px] w-full text-white text-ellipsis whitespace-nowrap overflow-hidden">
         {title}
       </h2>

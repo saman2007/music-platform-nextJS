@@ -81,7 +81,7 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  //get all the musics with a playlist array that contains 5
+    //get all the musics with a playlist array that contains 5
   const { data: musics } = await supabase
     .from("musics")
     .select("*")

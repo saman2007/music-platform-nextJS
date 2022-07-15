@@ -4,26 +4,24 @@ import { ClockIcon } from "@heroicons/react/solid";
 import { DotsHorizontalIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import Logo from "./Logo";
-import { useRef, useState } from "react";
-import useOutSideClick from "../../hooks/useOutSideClick";
+import { useState } from "react";
 import TooltipContainer from "../Tooltip/TooltipContainer";
 import VolumeBar from "./VolumeBar";
 import { useDispatch, useSelector } from "react-redux";
 import musicActions from "../../store/MusicSlice";
 import Volume from "../MusicActionsBottomBar/Actions/Volume";
 import Like from "./Like";
+import Options from "../OptionsBar/Options";
 
 //basic styles for icons
 const iconsStyles = "w-[24px] h-[24px] transition duration-300 cursor-pointer";
 
 const NavBar = () => {
-  const optionsRef = useRef();
   const router = useRouter();
   const [showOptions, setShowOptions] = useState(false);
   const currentVolume = useSelector((state) => state.music.currentVolume);
   const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
-  useOutSideClick(optionsRef, () => setShowOptions(false));
 
   return (
     <div
@@ -79,22 +77,25 @@ const NavBar = () => {
           </TooltipContainer>
         </a>
       </Link>
-      <TooltipContainer tooltipText="options">
+      <Options
+        setShowOptions={setShowOptions}
+        showOptions={showOptions}
+      >
         <div
-          onClick={() => {
-            setShowOptions(!showOptions);
-          }}
-          ref={optionsRef}
         >
-          <DotsHorizontalIcon
-            className={`${iconsStyles} ${
-              showOptions
-                ? "text-[#fafafa]"
-                : "text-[#828282] hover:text-[#fafafa]"
-            }`}
-          />
+          <TooltipContainer tooltipText="options">
+            <div>
+              <DotsHorizontalIcon
+                className={`${iconsStyles} ${
+                  showOptions
+                    ? "text-[#fafafa]"
+                    : "text-[#828282] hover:text-[#fafafa]"
+                }`}
+              />
+            </div>
+          </TooltipContainer>
         </div>
-      </TooltipContainer>
+      </Options>
       <div className="flex-grow flex flex-col justify-end items-center">
         <div className="h-[40%] mb-[10px]">
           <VolumeBar

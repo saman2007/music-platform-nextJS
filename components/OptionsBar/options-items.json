@@ -1,0 +1,26 @@
+[
+  {
+    "text": "send feedback",
+    "href": "/feedback",
+    "styles": {
+      "color": "#fff",
+      "backgroundColor": "#c026d3"
+    }
+  },
+  {
+    "text": "contact us",
+    "href": "/contact-us",
+    "styles": {
+      "color": "#fff",
+      "backgroundColor": "#1db854"
+    }
+  },
+  {
+    "text": "all artists",
+    "href": "/artists",
+    "styles": {
+      "color": "#fff",
+      "backgroundColor": "#fe9c02"
+    }
+  }
+]

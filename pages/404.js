@@ -3,29 +3,19 @@ import { useDispatch } from "react-redux";
 import notificationActions from "../store/NotificatinSlice";
 import Link from "next/link";
 import useOutSideClick from "../hooks/useOutSideClick";
+import useCssTransition from "../hooks/useCssTransition";
 
 const NotFoundPage = () => {
   const dispatch = useDispatch();
   const modalContainerRef = useRef();
-  const [situation, setSituation] = useState("opening");
+  const { situation, close } = useCssTransition(300);
 
   //when user clicked outside the 404 box
-  useOutSideClick(modalContainerRef, () => {
-    //remove the box and its container with animation
-    setSituation("closing");
-
-    //remove the the 404 page from the dom
-    setTimeout(() => {
-      setSituation("close");
-    }, 300);
-  });
+  useOutSideClick(modalContainerRef, close, situation === "open");
 
   useEffect(() => {
     //remove the displaying notification
     dispatch(notificationActions.setSituation(null));
-
-    //display the 404 modal with animation
-    setSituation("open");
   }, []);
 
   if (situation !== "close") {

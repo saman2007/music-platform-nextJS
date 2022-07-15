@@ -3,6 +3,12 @@
 @tailwind utilities;
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans&display=swap');
 
+@layer components {
+    #__next {
+        @apply w-full h-full
+    }
+}
+
 .tick {
     stroke-opacity: 0;
     stroke-dasharray: 29px;

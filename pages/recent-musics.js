@@ -86,7 +86,7 @@ const recentMusicsPage = () => {
               title={"your recent musics"}
             />
           </div>
-        ) : musics.length === 0 || !musics ? (
+        ) : musics.length === 0 ? (
           <h1 className="text-[25px] text-white font-bold">No data is here!</h1>
         ) : (
           ""

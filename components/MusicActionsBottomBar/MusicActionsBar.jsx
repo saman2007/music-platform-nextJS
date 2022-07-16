@@ -69,7 +69,7 @@ const MusicActionsBar = () => {
     >
       {playingMusic && (
         <>
-          <div className="min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center items-center hover:bg-[#383838] rounded-[10px]">
+          <div className="items-center min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center hover:bg-[#383838] rounded-[10px]">
             <MusicCoverImage src={playingMusic.cover} />
             <MusicInfos
               name={playingMusic.name}

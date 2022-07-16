@@ -34,7 +34,7 @@ const MusicList = (props) => {
         >
           <div className="flex-grow items-center flex justify-start gap-x-[10px] overflow-hidden">
             <MusicCover imageSrc={music.cover} />
-            <MusicInfos musicName={music.name} musicSinger={music.singer} />
+            <MusicInfos singerPage={music.singerPage} musicPage={music.musicPage} musicName={music.name} musicSinger={music.singer} />
           </div>
           {props.history ? (
             <div className="lex-grow flex items-center justify-center">

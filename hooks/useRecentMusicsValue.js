@@ -19,7 +19,7 @@ const useRecentMusicsValue = () => {
 
   return {
     musics: freezedMusics ? freezedMusics : [],
-    isInited: !!freezedMusics,
+    isInited: !!recentMusics,
   };
 };
 

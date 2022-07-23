@@ -36,6 +36,7 @@ const commentsSlice = createSlice({
     clearComments: (state) => {
       state.comments = [];
     },
+    replaceSpecificComment: (state, actions) => {},
   },
 });
 
@@ -56,7 +57,7 @@ export const getComments = (filter) => {
       .select("*")
       .match(filter);
 
-      //if getting comments has error, display the error notification
+    //if getting comments has error, display the error notification
     if (error) {
       dispatch(
         notificatinActions.setSituation({
@@ -109,7 +110,7 @@ export const sendComment = (comment, type = "NONE", retryIndex, callback) => {
     delete newComment.type;
 
     //add the comment to database
-    const { error } = await supabase
+    const { error, data } = await supabase
       .from("comments")
       .insert([newComment]);
 
@@ -130,7 +131,7 @@ export const sendComment = (comment, type = "NONE", retryIndex, callback) => {
         })
       );
     } else {
-      newComment = { ...newComment, type: "success" };
+      newComment = { ...data[0], type: "success" };
       dispatch(
         commentsSlice.actions.addTypedComment({
           comment: newComment,

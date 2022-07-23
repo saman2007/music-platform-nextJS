@@ -2,17 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import Bar from "./Bar";
 import MobileBar from "./MobileBar";
 import musicActions from "../../store/MusicSlice";
-
-//a function to return a time that converted from seconds to minutes
-const getTime = (time) => {
-  const minutes = Math.floor(time / 60);
-  const seconds = Math.floor(time - minutes * 60);
-
-  return `${minutes}:${seconds.toLocaleString("en-US", {
-    minimumIntegerDigits: 2,
-    useGrouping: false,
-  })}`;
-};
+import { getTime } from "../../helpers/helpers";
 
 const MusicTimeLine = () => {
   const currentTime = useSelector((state) => state.music.currentTime);

@@ -6,7 +6,6 @@ import store from "../store/ReduxStore";
 import { createClient } from "@supabase/supabase-js";
 import "../index.css";
 import Notification from "../components/notification/Notification";
-import { useEffect, useState } from "react";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,

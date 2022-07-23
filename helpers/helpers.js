@@ -1,3 +1,14 @@
+//a function to return a time that converted from seconds to minutes
+const getTime = (time) => {
+  const minutes = Math.floor(time / 60);
+  const seconds = Math.floor(time - minutes * 60);
+
+  return `${minutes}:${seconds.toLocaleString("en-US", {
+    minimumIntegerDigits: 2,
+    useGrouping: false,
+  })}`;
+};
+
 //a function to see if there is a specific key in local storage
 const isInitialized = (item) => {
   const lSDatas = localStorage.getItem(item);
@@ -19,4 +30,4 @@ const getUpdatedState = (oldState, newState) => {
   return oldState;
 };
 
-export { isInitialized, getUpdatedState };
+export { isInitialized, getUpdatedState, getTime };

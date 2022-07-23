@@ -61,7 +61,7 @@ const MusicActionsBar = () => {
 
   return (
     <div
-      className={`absolute w-full bg-[#212121] rounded-t-[15px] flex justify-between items-center transition-all duration-300 ${
+      className={`absolute z-10 w-full bg-[#212121] rounded-t-[15px] flex justify-between items-center transition-all duration-300 ${
         isInitialized
           ? "bottom-0 row-start-11 row-end-12 col-start-1 col-end-[13] px-[15px] gap-x-[20px] py-[5px]"
           : "-bottom-full"

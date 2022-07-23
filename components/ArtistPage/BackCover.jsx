@@ -2,7 +2,7 @@ import Image from "next/image";
 
 const BackCover = (props) => {
   return (
-    <div className="relative w-full h-[200px] rounded-[20px] bg-cover flex items-center mb-[10px]">
+    <div className="relative w-full h-[200px] rounded-[20px] flex items-center mb-[10px]">
       <div className="absolute w-full h-full">
         <Image alt="artist-page-bg" src={props.cover} layout="fill" objectFit="cover" className="rounded-[20px]" />
       </div>

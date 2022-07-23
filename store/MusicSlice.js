@@ -35,6 +35,9 @@ const musicSlice = createSlice({
       state.musicEl.play();
       state.isPlaying = true;
       state.isInitialized = true;
+      state.playlist = null;
+      state.playlistId = null;
+      state.playingMusicIndex = null;
     },
     //to play a music
     playMusic(state) {
@@ -100,43 +103,57 @@ const musicSlice = createSlice({
     },
     //to play next music automatically when music is done
     playNextMusicAuto(state) {
-      //if there are still other musics to play in a playlist, play next music
-      if (state.playlist.length - 1 > state.playingMusicIndex) {
-        state.playingMusicIndex++;
-        state.musicEl.src = state.playlist[state.playingMusicIndex].link;
-        state.musicEl.play();
-        state.currentMusic = state.playlist[state.playingMusicIndex];
-        //if the current music is the last music of playlist and its done, pause the music
-      } else {
-        state.musicEl.pause();
+      if (!state.playlist) {
         state.isPlaying = false;
+      } else {
+        //if there are still other musics to play in a playlist, play next music
+        if (state.playlist.length - 1 > state.playingMusicIndex) {
+          state.playingMusicIndex++;
+          state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+          state.musicEl.play();
+          state.currentMusic = state.playlist[state.playingMusicIndex];
+          //if the current music is the last music of playlist and its done, pause the music
+        } else {
+          state.musicEl.pause();
+          state.isPlaying = false;
+        }
       }
     },
     //to play next music manually
     playNextMusic(state) {
-      //if the playing music is the last music of playlist, play the first music of playlist
-      if (state.playlist.length - 1 === state.playingMusicIndex)
-        state.playingMusicIndex = 0;
-      //else, play the next music
-      else state.playingMusicIndex++;
+      if (!state.playlist) {
+        state.musicEl.currentTime = 0;
+        state.currentTime = 0;
+      } else {
+        //if the playing music is the last music of playlist, play the first music of playlist
+        if (state.playlist?.length - 1 === state.playingMusicIndex)
+          state.playingMusicIndex = 0;
+        //else, play the next music
+        else state.playingMusicIndex++;
 
-      state.musicEl.src = state.playlist[state.playingMusicIndex].link;
-      if (state.isPlaying) state.musicEl.play();
-      else state.musicEl.pause();
-      state.currentMusic = state.playlist[state.playingMusicIndex];
+        state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+        if (state.isPlaying) state.musicEl.play();
+        else state.musicEl.pause();
+        state.currentMusic = state.playlist[state.playingMusicIndex];
+      }
     },
     //to play previous music manually
     playPreviousMusic(state) {
-      //if the playing music is the first music of playlist, play the last music of playlist
-      if (state.playingMusicIndex === 0)
-        state.playingMusicIndex = state.playlist.length - 1;
-      //else play the previous music
-      else state.playingMusicIndex--;
+      if (!state.playlist) {
+        state.musicEl.currentTime = 0;
+        state.currentTime = 0;
+      } else {
+        //if the playing music is the first music of playlist, play the last music of playlist
+        if (state.playingMusicIndex === 0)
+          state.playingMusicIndex = state.playlist.length - 1;
+        //else play the previous music
+        else state.playingMusicIndex--;
 
-      state.musicEl.src = state.playlist[state.playingMusicIndex].link;
-      if (state.isPlaying) state.musicEl.play();
-      else state.musicEl.pause();
-      state.currentMusic = state.playlist[state.playingMusicIndex];
+        state.musicEl.src = state.playlist[state.playingMusicIndex].link;
+        if (state.isPlaying) state.musicEl.play();
+        else state.musicEl.pause();
+        state.currentMusic = state.playlist[state.playingMusicIndex];
+      }
     },
     //to abort the sending request and replace a new abort controller
     replaceNewAbortController(state) {

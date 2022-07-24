@@ -3,6 +3,7 @@ import { useDispatch } from "react-redux";
 import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
 import Comments from "../../../../components/MusicPage/Comments/Comments";
 import MusicInfosContainer from "../../../../components/MusicPage/MusicInfosContainer";
+import Layout from "../../../../components/PagesLayout/Layout";
 import useInitialized from "../../../../hooks/useInitialized";
 import { commentsActions } from "../../../../store/CommentsSlice";
 import { supabase } from "../../../_app";
@@ -25,12 +26,10 @@ const MusicPage = (props) => {
   }
 
   return (
-    <div
-      className={`col-start-2 col-end-13 row-start-2 px-[4px] overflow-y-auto content-container ${initClass}`}
-    >
+    <Layout classes={"!px-[4px]"}>
       <MusicInfosContainer music={music} />
       <Comments singer={music.singer} name={music.name} />
-    </div>
+    </Layout>
   );
 };
 

@@ -6,9 +6,9 @@ import BackCover from "../../../components/ArtistPage/BackCover";
 import MusicList from "../../../components/MusicList/MusicList";
 import notificationActions from "../../../store/NotificatinSlice";
 import { supabase } from "../../_app";
+import Layout from "../../../components/PagesLayout/Layout";
 
 const Artist = (props) => {
-  const isInitialized = useSelector((state) => state.music.isInitialized);
   const router = useRouter();
   const dispatch = useDispatch();
 
@@ -28,11 +28,7 @@ const Artist = (props) => {
   //if the page doesnt have error and it is not on fallback mode, display the artist datas
   if (!router.isFallback) {
     return (
-      <div
-        className={`col-start-2 col-end-13 row-start-2 px-[4px] overflow-y-auto ${
-          isInitialized ? "row-end-[12]" : "row-end-[13]"
-        }`}
-      >
+      <Layout>
         <BackCover
           username={props.artist.username}
           name={props.artist.name}
@@ -49,7 +45,7 @@ const Artist = (props) => {
           />
           <MusicList musics={props.musics} playlistId={-1} />
         </div>
-      </div>
+      </Layout>
     );
   }
 };

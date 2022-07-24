@@ -1,6 +1,7 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import MusicList from "../components/MusicList/MusicList";
+import Layout from "../components/PagesLayout/Layout";
 import useFavoriteMusicsValue from "../hooks/useFavoriteMusicsValue";
 import favoriteMusicsAc from "../store/FavoriteMusics";
 import notificationAc from "../store/NotificatinSlice";
@@ -8,7 +9,6 @@ import { supabase } from "./_app";
 
 const FavoriteMusics = () => {
   const { musics, isInited } = useFavoriteMusicsValue();
-  const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -68,11 +68,7 @@ const FavoriteMusics = () => {
   }, [isInited]);
 
   return (
-    <div
-      className={`row-start-2 ${
-        isInitialized ? "row-end-[12]" : "row-end-[13]"
-      } col-start-2 col-end-13 px-[15px] overflow-y-auto flex justify-center items-center`}
-    >
+    <Layout classes={"flex justify-center items-center"}>
       {isInited &&
         (musics.length !== 0 ? (
           <div className="w-full sm:w-[500px] md:w-[700px] h-full pt-[50px]">
@@ -87,7 +83,7 @@ const FavoriteMusics = () => {
         ) : (
           ""
         ))}
-    </div>
+    </Layout>
   );
 };
 

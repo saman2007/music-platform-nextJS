@@ -1,15 +1,15 @@
 import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import MusicList from "../components/MusicList/MusicList";
 import useRecentMusicsValue from "../hooks/useRecentMusicsValue";
 import notificationAc from "../store/NotificatinSlice";
 import recentMusicsAc from "../store/RecentMusicsSlice";
 import { supabase } from "./_app";
 import { getUpdatedState } from "../helpers/helpers";
+import Layout from "../components/PagesLayout/Layout";
 
 const recentMusicsPage = () => {
   const { musics, isInited } = useRecentMusicsValue();
-  const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -71,11 +71,7 @@ const recentMusicsPage = () => {
   }, [isInited]);
 
   return (
-    <div
-      className={`row-start-2 ${
-        isInitialized ? "row-end-[12]" : "row-end-[13]"
-      } col-start-2 col-end-13 px-[15px] overflow-y-auto flex justify-center items-center`}
-    >
+    <Layout classes={"flex justify-center items-center"}>
       {isInited &&
         (musics.length !== 0 ? (
           <div className="w-full sm:w-[500px] md:w-[700px] h-full pt-[50px]">
@@ -91,7 +87,7 @@ const recentMusicsPage = () => {
         ) : (
           ""
         ))}
-    </div>
+    </Layout>
   );
 };
 

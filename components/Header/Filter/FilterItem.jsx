@@ -1,8 +1,8 @@
 const FilterItem = (props) => {
-  const { text, currentFilter, setCurrentFilter, margin } = props;
+  const { text, currentFilters, setCurrentFilter, margin } = props;
 
   let selectedFilterClass =
-    currentFilter === text
+    currentFilters?.includes(text)
       ? "!bg-[#d9d9d9] !text-[#262626] !border-[#d9d9d9]"
       : "";
 

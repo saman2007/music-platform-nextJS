@@ -4,6 +4,7 @@ import { recentMusicsReducers } from "./RecentMusicsSlice";
 import { musicReducers } from "./MusicSlice";
 import { notificationReducers } from "./NotificatinSlice";
 import CommentsSlice from "./CommentsSlice";
+import { genresReducers } from "./GenresSlice";
 
 const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ const store = configureStore({
     favoriteMusics: favoriteMusicsReducers,
     recentMusics: recentMusicsReducers,
     comments: CommentsSlice,
+    genres: genresReducers,
   },
 });
 

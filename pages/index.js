@@ -1,3 +1,4 @@
+import { useSelector } from "react-redux";
 import Genres from "../components/Genres/Genres";
 import MusicCollection from "../components/MusicCollectionCard/MusicCollection";
 import MusicList from "../components/MusicList/MusicList";
@@ -46,6 +47,13 @@ const artists = [
 ];
 
 export default function Home(props) {
+  const filters = useSelector((store) => store.genres.genres);
+  const filteredMusics = props.musics.filter((music) =>
+    music.genres.some((r) =>
+      filters.includes("All Genres") ? true : filters.includes(r)
+    )
+  );
+
   return (
     <Layout>
       <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
@@ -64,7 +72,7 @@ export default function Home(props) {
       <div className="w-full flex gap-x-[20px] flex-col items-center md:flex-row md:items-start mb-[20px]">
         <Genres genres={genres} />
         <MusicList
-          musics={props.musics}
+          musics={filteredMusics}
           playlistId={5}
           title={"Tracks of the Week"}
         />

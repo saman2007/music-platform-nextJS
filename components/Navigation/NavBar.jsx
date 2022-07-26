@@ -4,7 +4,6 @@ import { ClockIcon } from "@heroicons/react/solid";
 import { DotsHorizontalIcon } from "@heroicons/react/solid";
 import Link from "next/link";
 import Logo from "./Logo";
-import { useState } from "react";
 import TooltipContainer from "../Tooltip/TooltipContainer";
 import VolumeBar from "./VolumeBar";
 import { useDispatch, useSelector } from "react-redux";
@@ -12,13 +11,17 @@ import musicActions from "../../store/MusicSlice";
 import Volume from "../MusicActionsBottomBar/Actions/Volume";
 import Like from "./Like";
 import Options from "../OptionsBar/Options";
+import useCssTransition from "../../hooks/useCssTransition";
 
 //basic styles for icons
 const iconsStyles = "w-[24px] h-[24px] transition duration-300 cursor-pointer";
 
 const NavBar = () => {
   const router = useRouter();
-  const [showOptions, setShowOptions] = useState(false);
+  const { situation, close, toggle } = useCssTransition(
+    400,
+    "close"
+  );
   const currentVolume = useSelector((state) => state.music.currentVolume);
   const isInitialized = useSelector((state) => state.music.isInitialized);
   const dispatch = useDispatch();
@@ -77,17 +80,13 @@ const NavBar = () => {
           </TooltipContainer>
         </a>
       </Link>
-      <Options
-        setShowOptions={setShowOptions}
-        showOptions={showOptions}
-      >
-        <div
-        >
+      <Options situation={situation} close={close} toggle={toggle}>
+        <div>
           <TooltipContainer tooltipText="options">
             <div>
               <DotsHorizontalIcon
                 className={`${iconsStyles} ${
-                  showOptions
+                  situation === "open"
                     ? "text-[#fafafa]"
                     : "text-[#828282] hover:text-[#fafafa]"
                 }`}

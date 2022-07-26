@@ -2,16 +2,19 @@ import AdjustmentsIcon from "@heroicons/react/outline/AdjustmentsIcon";
 import FilterItem from "./FilterItem";
 import { useDispatch, useSelector } from "react-redux";
 import genresActions from "../../../store/GenresSlice";
+import FilterPopup from "./FiltersPopup/FiltersPopup";
 
 const FilterContainer = () => {
   const selectedFilters = useSelector((store) => store.genres.searchGenres);
+  const featuredGenres = useSelector((store) => store.genres.allFeaturedGenres);
   const dispatch = useDispatch();
 
   return (
     <div className="w-[400px] h-full hidden md:flex items-center justify-end">
       <div className="overflow-x-auto mr-[10px] flex items-center">
-        {["minimal", "house", "rap"].map((genre) => (
+        {featuredGenres.map(({ name: genre, id }) => (
           <FilterItem
+            key={id}
             margin
             text={genre}
             currentFilters={selectedFilters}
@@ -56,9 +59,13 @@ const FilterContainer = () => {
         ))}
       </div>
       <div className="py-[5px] flex justify-center items-center">
-        <div className="flex px-[5px] cursor-pointer justify-center items-center border-l border-solid border-l-[#232323]">
-          <AdjustmentsIcon className="text-[#d9d9d9] w-[24px] h-full" />
-          <p className="text-[14px] text-[#d9d9d9]">Filters</p>
+        <div className="relative flex px-[5px] cursor-pointer justify-center items-center border-l border-solid border-l-[#232323]">
+          <FilterPopup>
+            <div className="flex justify-center items-center">
+              <AdjustmentsIcon className="text-[#d9d9d9] w-[24px] h-full" />
+              <p className="text-[14px] text-[#d9d9d9]">Filters</p>
+            </div>
+          </FilterPopup>
         </div>
       </div>
     </div>

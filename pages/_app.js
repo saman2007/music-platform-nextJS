@@ -12,14 +12,14 @@ export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_KEY
 );
 
-function MyApp({ Component, pageProps }) {
+function MyApp({ Component, pageProps, genres }) {
   return (
     <Provider store={store}>
       <Notification />
       <div
         className={`relative w-full h-full overflow-hidden select-none bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]`}
       >
-        <Header />
+        <Header genres={genres} />
         <NavBar />
         <MusicActionsBar />
         <Component {...pageProps} />
@@ -27,5 +27,11 @@ function MyApp({ Component, pageProps }) {
     </Provider>
   );
 }
+
+MyApp.getInitialProps = async () => {
+  let { data: genres, error } = await supabase.from("genres").select("*");
+
+  return { genres };
+};
 
 export default MyApp;

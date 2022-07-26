@@ -19,7 +19,19 @@ const useCssTransition = (transitionTime, defaultSituation = "opening") => {
     setSituation("opening");
   };
 
-  return { situation, close, open };
+  const toggle = () => {
+    setSituation((prevState) => {
+      if (prevState === "close") return "opening";
+      else if (prevState === "open") {
+        setTimeout(() => {
+          setSituation("close");
+        }, transitionTime);
+        return "closing";
+      }
+    });
+  };
+
+  return { situation, close, open, toggle };
 };
 
 export default useCssTransition;

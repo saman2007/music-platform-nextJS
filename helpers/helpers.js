@@ -30,4 +30,15 @@ const getUpdatedState = (oldState, newState) => {
   return oldState;
 };
 
-export { isInitialized, getUpdatedState, getTime };
+function throttle(fn, delay, defaultDelay) {
+  let lastInvoke = defaultDelay ? defaultDelay + Date.now() : null;
+
+  return (...args) => {
+    if (lastInvoke + delay < Date.now()) {
+      lastInvoke = Date.now();
+      fn(...args);
+    }
+  };
+}
+
+export { isInitialized, getUpdatedState, getTime, throttle };

@@ -12,9 +12,9 @@ const Genres = (props) => {
   return (
     <GenresContainer>
       <div className="flex flex-wrap gap-x-[5px] gap-y-[7px] mb-[10px]">
-        {genres.map((genre) => (
+        {genres.map(({name: genre, id}) => (
           <Genre
-            key={genre}
+            key={id}
             setCurrentFilter={() => {
               let genreIndex = currentGenres.findIndex(
                 (value) => value === genre

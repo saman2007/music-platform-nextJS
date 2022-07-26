@@ -6,15 +6,6 @@ import Layout from "../components/PagesLayout/Layout";
 import RecentArtists from "../components/RecentArtists/RecentArtists";
 import { supabase } from "./_app";
 
-const genres = [
-  "Classic",
-  "House",
-  "Minimal",
-  "Hip-Hop",
-  "Electronic",
-  "Chill",
-];
-
 const artists = [
   {
     background: "/eminem.png",
@@ -48,6 +39,8 @@ const artists = [
 
 export default function Home(props) {
   const filters = useSelector((store) => store.genres.genres);
+  const genres = useSelector((store) => store.genres.allGenres);
+  
   const filteredMusics = props.musics.filter((music) =>
     music.genres.some((r) =>
       filters.includes("All Genres") ? true : filters.includes(r)

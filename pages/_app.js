@@ -6,6 +6,7 @@ import store from "../store/ReduxStore";
 import { createClient } from "@supabase/supabase-js";
 import "../index.css";
 import Notification from "../components/notification/Notification";
+import ContextProvider from "../store/context";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,
@@ -14,17 +15,19 @@ export const supabase = createClient(
 
 function MyApp({ Component, pageProps, genres }) {
   return (
-    <Provider store={store}>
-      <Notification />
-      <div
-        className={`relative w-full h-full overflow-hidden select-none bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]`}
-      >
-        <Header genres={genres} />
-        <NavBar />
-        <MusicActionsBar />
-        <Component {...pageProps} />
-      </div>
-    </Provider>
+    <ContextProvider>
+      <Provider store={store}>
+        <Notification />
+        <div
+          className={`relative w-full h-full overflow-hidden select-none bg-[#f8f9fa] dark:bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]`}
+        >
+          <Header genres={genres} />
+          <NavBar />
+          <MusicActionsBar />
+          <Component {...pageProps} />
+        </div>
+      </Provider>
+    </ContextProvider>
   );
 }
 

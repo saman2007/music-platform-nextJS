@@ -12,7 +12,7 @@ const MusicTimeLine = () => {
   return (
     <>
       <div className="hidden sm:flex items-center gap-x-[15px] w-[60%]">
-        <p className="text-white text-[14px]">{getTime(currentTime)}</p>
+        <p className="dark:text-white text-black text-[14px]">{getTime(currentTime)}</p>
         <Bar
           callBack={(percent) => {
             //calculate the new current time number of audio base on users clicked or moved percent
@@ -23,7 +23,7 @@ const MusicTimeLine = () => {
           position={currentTime}
           maxPosition={musicDuration}
         />
-        <p className="text-white text-[14px]">{getTime(musicDuration)}</p>
+        <p className="dark:text-white text-black text-[14px]">{getTime(musicDuration)}</p>
       </div>
       <MobileBar position={currentTime} maxPosition={musicDuration} />
     </>

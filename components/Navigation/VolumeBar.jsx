@@ -44,12 +44,12 @@ const VolumeBar = (props) => {
 
   return (
     <div
-      className="h-full w-[5px] rounded-[10px] bg-[#4b4b4b] group flex flex-col justify-end sm:hidden"
+      className="h-full w-[5px] rounded-[10px] bg-[#687076] dark:bg-[#4b4b4b] group flex flex-col justify-end sm:hidden"
       ref={barRef}
       onClick={moveFill}
     >
       <div
-        className="w-full bg-white h-[50px] rounded-[10px] relative"
+        className="w-full bg-black dark:bg-white h-[50px] rounded-[10px] relative"
         style={
           isDragging
             ? { height: fillRef.current.style.height }
@@ -63,7 +63,7 @@ const VolumeBar = (props) => {
             document.addEventListener("mousemove", moveFill);
             dispatch(musicActions.setIsDragging(true));
           }}
-          className="group-hover:opacity-100 cursor-pointer opacity-0 transition duration-300 absolute left-[calc(100%_-_7px)] w-[10px] h-[10px] rounded-full bg-[#e8e8e8] top-[-3px]"
+          className="group-hover:opacity-100 cursor-pointer opacity-0 transition duration-300 absolute left-[calc(100%_-_7px)] w-[10px] h-[10px] rounded-full bg-black dark:bg-[#e8e8e8] top-[-3px]"
         ></span>
       </div>
     </div>

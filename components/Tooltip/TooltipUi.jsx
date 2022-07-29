@@ -9,7 +9,7 @@ const TooltipUi = (props) => {
 
   return (
     <span
-      className={`absolute ${shouldVisible} z-10 text-white transition-all duration-300 min-w-[100px] bg-[#161616] text-center rounded-[5px] px-[7px] py-[5px] after:content-[''] after:absolute after:mt-[-5px] after:top-2/4 after:right-full after:border-[5px] after:border-solid after:border-[transparent_#212121_transparent_transparent]`}
+      className={`absolute ${shouldVisible} z-10 text-white transition-all duration-300 min-w-[100px] bg-[#1db854] dark:bg-[#161616] text-center rounded-[5px] px-[7px] py-[5px] after:content-[''] after:absolute after:mt-[-5px] after:top-2/4 after:right-full after:border-[5px] after:border-solid after:dark:border-[transparent_#212121_transparent_transparent] after:border-[transparent_#1db854_transparent_transparent]`}
       style={{ left: `${offset.x + 30}px`, top: `${offset.y - 5}px` }}
     >
       {text}

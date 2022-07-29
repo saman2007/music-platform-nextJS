@@ -12,7 +12,7 @@ const AccountBio = (props) => {
       infos.push(
         <a
           href={props.bio[key]}
-          className="flex items-center gap-x-[5px] w-fit text-[#929292] hover:text-[#727272]"
+          className="flex items-center gap-x-[5px] w-fit text-black dark:text-[#929292] hover:text-[#727272]"
           key={key}
         >
           {icon}
@@ -20,7 +20,7 @@ const AccountBio = (props) => {
         </a>
       );
     } else {
-      infos.push(<span key={key} className="mb-[20px] inline-block text-[#929292]">{props.bio[key]}</span>);
+      infos.push(<span key={key} className="mb-[20px] inline-block text-black dark:text-[#929292]">{props.bio[key]}</span>);
     }
   }
 

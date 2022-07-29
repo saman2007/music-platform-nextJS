@@ -79,7 +79,7 @@ const FavoriteMusics = () => {
             />
           </div>
         ) : musics.length === 0 ? (
-          <h1 className="text-[25px] text-white font-bold">No data is here!</h1>
+          <h1 className="text-[25px] text-black dark:text-white font-bold">No data is here!</h1>
         ) : (
           ""
         ))}

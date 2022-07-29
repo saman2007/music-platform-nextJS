@@ -1,6 +1,6 @@
 const Results = () => {
   return (
-    <div className="bg-[#242729] rounded-[5px] p-[5px] min-h-[50px]"></div>
+    <div className="dark:bg-[#1a1a1a] bg-[#888888] rounded-[5px] p-[5px] min-h-[50px]"></div>
   );
 };
 

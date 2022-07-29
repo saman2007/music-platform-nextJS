@@ -100,7 +100,7 @@ const MusicWaveBar = ({ musicLink }) => {
           {getTime(wave?.backend.getDuration())}
         </span>
       </div>
-      {!isWaveReady && <p className="text-white text-[20px]">loading...</p>}
+      {!isWaveReady && <p className="dark:text-white text-black text-[20px]">loading...</p>}
     </div>
   );
 };

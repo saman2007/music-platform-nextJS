@@ -16,7 +16,7 @@ const Notification = () => {
           //when user clicked on the notification, remove the notification
           dispatch(notificationActions.removeSituation());
         }}
-        className={`transition-all duration-300 absolute min-w-[170px] max-w-[190px] min-h-[40px] bg-[#161616] z-10 right-[20px] px-[5px] rounded-[10px] border-[1px] border-[#323232] border-solid ${
+        className={`transition-all duration-300 absolute min-w-[170px] max-w-[190px] min-h-[40px] dark:bg-[#1a1a1a] bg-[#888888] z-20 right-[20px] px-[5px] rounded-[10px] border-[1px] dark:border-[#323232] border-[#1db854] border-solid ${
           isRemoved || !situation ? "top-[-500px]" : ""
         } ${
           !isRemoved && situation ? "top-[50px]" : ""

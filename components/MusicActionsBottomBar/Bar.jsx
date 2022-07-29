@@ -49,12 +49,12 @@ const Bar = (props) => {
 
   return (
     <div
-      className="h-[5px] w-full rounded-[10px] bg-[#4b4b4b] group"
+      className="h-[5px] w-full rounded-[10px] bg-[#687076] dark:bg-[#4b4b4b] group"
       ref={barRef}
       onClick={moveFill}
     >
       <div
-        className="relative bg-[#e8e8e8] h-full rounded-[10px]"
+        className="relative bg-black dark:bg-white h-full rounded-[10px]"
         style={
           isDragging
             ? { width: fillRef.current.style.width }
@@ -68,7 +68,7 @@ const Bar = (props) => {
             document.addEventListener("mousemove", moveFill);
             dispatch(musicActions.setIsDragging(true));
           }}
-          className="group-hover:opacity-100 cursor-pointer opacity-0 transition duration-300 absolute left-[calc(100%_-_2px)] w-[10px] h-[10px] rounded-full bg-[#e8e8e8] top-[-3px]"
+          className="group-hover:opacity-100 cursor-pointer opacity-0 transition duration-300 absolute left-[calc(100%_-_2px)] w-[10px] h-[10px] rounded-full bg-black dark:bg-[#e8e8e8] top-[-3px]"
         ></span>
       </div>
     </div>

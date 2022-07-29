@@ -61,7 +61,7 @@ const MusicActionsBar = () => {
 
   return (
     <div
-      className={`absolute z-10 w-full bg-[#212121] rounded-t-[15px] flex justify-between items-center transition-all duration-300 ${
+      className={`absolute z-10 w-full bg-[#cfcfcf] dark:bg-[#212121] rounded-t-[15px] flex justify-between items-center transition-all duration-300 ${
         isInitialized
           ? "bottom-0 row-start-11 row-end-12 col-start-1 col-end-[13] px-[15px] gap-x-[20px] py-[5px]"
           : "-bottom-full"
@@ -69,7 +69,7 @@ const MusicActionsBar = () => {
     >
       {playingMusic && (
         <>
-          <div className="items-center min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center hover:bg-[#383838] rounded-[10px]">
+          <div className="items-center min-w-fit max-w-[200px] transition duration-300 h-full p-[4px] gap-x-[10px] flex justify-center hover:bg-[#a1a1a1] dark:hover:bg-[#383838] rounded-[10px]">
             <MusicCoverImage src={playingMusic.cover} />
             <MusicInfos
               name={playingMusic.name}

@@ -10,7 +10,7 @@ const SearchResultsFilters = () => {
 
   return (
     <div className="mb-[15px]">
-      <p className="text-[16px] text-white mb-[3px]">search results filters</p>
+      <p className="text-[16px] dark:text-white text-black mb-[3px]">search results filters</p>
       <div className="gap-[5px] flex flex-row overflow-x-auto">
         {["artists", "musics", "albums", "all"].map((data) => (
           <FilterItem

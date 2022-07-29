@@ -59,11 +59,11 @@ const FilterContainer = () => {
         ))}
       </div>
       <div className="py-[5px] flex justify-center items-center">
-        <div className="relative flex px-[5px] cursor-pointer justify-center items-center border-l border-solid border-l-[#232323]">
+        <div className="relative flex px-[5px] cursor-pointer justify-center items-center border-l border-solid border-l-[#889096] dark:border-l-[#232323]">
           <FilterPopup>
             <div className="flex justify-center items-center">
-              <AdjustmentsIcon className="text-[#d9d9d9] w-[24px] h-full" />
-              <p className="text-[14px] text-[#d9d9d9]">Filters</p>
+              <AdjustmentsIcon className="text-[#1db854] dark:text-[#d9d9d9] w-[24px] h-full" />
+              <p className="text-[14px] text-[#889096] dark:text-[#d9d9d9]">Filters</p>
             </div>
           </FilterPopup>
         </div>

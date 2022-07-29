@@ -19,8 +19,8 @@ const Comment = ({
   const reply = () => {
     //move user to the first of the page
     document
-      .querySelector(".content-container")
-      .scrollTo({ top: 0, behavior: "smooth" });
+      .querySelector(".input")
+      .scrollIntoView({behavior: "smooth"})
 
     //set the comment as the current comment replying to
     dispatch(commentsActions.setReplyingTo(comment));
@@ -42,7 +42,7 @@ const Comment = ({
 
   return (
     <Reply infos={repliedInfos}>
-      <div className="flex relative items-center gap-x-[5px] text-white bg-[#1a1a1a] rounded-[10px] w-full p-[5px]">
+      <div className="flex relative items-center gap-x-[5px] text-white dark:bg-[#1a1a1a] bg-[#888888] rounded-[10px] w-full p-[5px]">
         {type === "sending" && (
           <div className="absolute w-full h-full rounded-[10px] flex justify-center items-center bg-[#ffffff0d] backdrop-blur border-[#ffffff2e] border-solid border z-[10] left-0">
             <p className="text-white text-[18px]">sending...</p>
@@ -52,7 +52,7 @@ const Comment = ({
           <CommentProfile />
         </div>
         <div className="flex-grow h-full">
-          <div className="flex justify-between text-[14px] text-[#828282] mb-[10px]">
+          <div className="flex justify-between text-[14px] text-white dark:text-[#828282] mb-[10px]">
             <div className="overflow-hidden"><p className="text-ellipsis overflow-hidden whitespace-nowrap">{username}</p></div>
             <p>{date}</p>
           </div>

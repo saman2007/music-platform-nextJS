@@ -30,7 +30,7 @@ const NavBar = () => {
     <div
       className={`h-full row-start-1 ${
         isInitialized ? "row-end-[12]" : "row-end-[13]"
-      } col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#101010]`}
+      } col-start-1 col-end-1 w-[70px] flex flex-col items-center py-[15px] border-r border-solid border-r-[#889096] dark:border-r-[#101010]`}
     >
       <Logo />
       <Link href="/" passHref prefetch={false}>
@@ -41,8 +41,8 @@ const NavBar = () => {
                 className={`${iconsStyles} ${
                   //conditionally change the icons color (active the icon)
                   router.pathname === "/"
-                    ? "text-[#fafafa]"
-                    : "text-[#828282] hover:text-[#fafafa]"
+                    ? "text-[#1db854] dark:text-[#fafafa]"
+                    : "text-[#687076] hover:text-[#1db854] dark:text-[#828282] dark:hover:text-[#fafafa]"
                 }`}
               />
             </span>
@@ -57,8 +57,8 @@ const NavBar = () => {
                 className={`${iconsStyles} ${
                   //conditionally change the icons color (active the icon)
                   router.pathname === "/favorite-musics"
-                    ? "text-[#fafafa]"
-                    : "text-[#828282] hover:text-[#fafafa]"
+                  ? "text-[#1db854] dark:text-[#fafafa]"
+                  : "text-[#687076] hover:text-[#1db854] dark:text-[#828282] dark:hover:text-[#fafafa]"
                 }`}
               />
             </span>
@@ -72,8 +72,8 @@ const NavBar = () => {
               <ClockIcon
                 className={`${iconsStyles} ${
                   router.pathname === "/recent-musics"
-                    ? "text-[#fafafa]"
-                    : "text-[#828282] hover:text-[#fafafa]"
+                  ? "text-[#1db854] dark:text-[#fafafa]"
+                  : "text-[#687076] hover:text-[#1db854] dark:text-[#828282] dark:hover:text-[#fafafa]"
                 }`}
               />
             </span>
@@ -87,8 +87,8 @@ const NavBar = () => {
               <DotsHorizontalIcon
                 className={`${iconsStyles} ${
                   situation === "open"
-                    ? "text-[#fafafa]"
-                    : "text-[#828282] hover:text-[#fafafa]"
+                  ? "text-[#1db854] dark:text-[#fafafa]"
+                  : "text-[#687076] hover:text-[#1db854] dark:text-[#828282] dark:hover:text-[#fafafa]"
                 }`}
               />
             </div>

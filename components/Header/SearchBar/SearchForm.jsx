@@ -18,7 +18,7 @@ const SearchForm = () => {
     <form
       onSubmit={submitHandler}
       ref={formRef}
-      className="flex-grow md:relative bg-[#1a1a1a] items-center border-2 border-solid border-[#2d2d2d] px-[2px] rounded-[25px] flex"
+      className="flex-grow md:relative bg-[#cfcfcf] dark:bg-[#1a1a1a] items-center border-2 border-solid border-[#1db854] dark:border-[#2d2d2d] px-[2px] rounded-[25px] flex"
     >
       <SearchBtn />
       <SearchInputPopup formRef={formRef} searchInput={searchInput}>

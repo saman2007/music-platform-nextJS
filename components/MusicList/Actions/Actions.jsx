@@ -12,7 +12,7 @@ const Actions = (props) => {
   const dispatch = useDispatch();
 
   return (
-    <div className="hidden sm:flex w-[75px] h-[40px] rounded-[25px] items-center border-2 border-[#171717] border-solid">
+    <div className="hidden sm:flex w-[75px] h-[40px] rounded-[25px] items-center border-2 border-[#1db854] dark:border-[#171717] border-solid">
       <Like music={music} />
       {/* only if a music is playing, music id is equal to current music id and playlist id is equal
       to current playlist id, display pause icon in music of play list */}

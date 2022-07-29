@@ -17,7 +17,7 @@ const Comments = (props) => {
   }, []);
 
   return (
-    <div className="relative flex flex-col items-center w-full min-h-[200px] rounded-[20px] mb-[10px] bg-[#0d0d0d] p-[10px]">
+    <div className="relative flex flex-col items-center w-full min-h-[200px] rounded-[20px] mb-[10px] bg-[#cfcfcf] dark:bg-[#0d0d0d] p-[10px]">
       <CommentForm {...props} />
       {comments.map((data, index) => (
         <Comment
@@ -37,20 +37,20 @@ const Comments = (props) => {
       ))}
 
       {notificationSituation?.type === "loading" ? (
-        <p className="text-[20px] font-bold text-center text-white">
+        <p className="text-[20px] font-bold text-center dark:text-white text-black">
           loading comments...
         </p>
       ) : comments.length === 0 &&
         !!notificationSituation &&
         notificationSituation?.type !== "loading" &&
         notificationSituation?.type !== "error" ? (
-        <p className="text-[20px] font-bold text-center text-white">
+        <p className="text-[20px] font-bold text-center dark:text-white text-black">
           there are no comments here. be the first that submit a comment!
         </p>
       ) : (
         notificationSituation?.type === "error" && (
           <>
-            <p className="text-[20px] font-bold text-center mb-[5px] text-white">
+            <p className="text-[20px] font-bold text-center mb-[5px] dark:text-white text-black">
               failed to load comments. please try again.
             </p>
             <button

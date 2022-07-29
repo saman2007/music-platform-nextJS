@@ -54,7 +54,7 @@ const CommentForm = ({ singer, name }) => {
     <Replying infos={currentReplyingComment}>
       <form
         onSubmit={submitForm}
-        className="w-full h-[40px] rounded-[10px] flex bg-[#1a1a1a]"
+        className="w-full h-[40px] rounded-[10px] flex dark:bg-[#1a1a1a] bg-[#888888]"
       >
         <div className="relative max-h-[40px] min-w-[40px] min-h-[40px] max-w-[40px] rounded-[10px]">
           <CommentProfile />

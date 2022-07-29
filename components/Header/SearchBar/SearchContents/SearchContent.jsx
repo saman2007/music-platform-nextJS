@@ -9,7 +9,7 @@ const SearchContent = ({ text }) => {
       <SearchedFor text={text} />
       <SearchResultsFilters />
       <div className="md:hidden mb-[25px]">
-        <p className="text-[16px] text-white mb-[3px]">genres filter</p>
+        <p className="text-[16px] dark:text-white text-black mb-[3px]">genres filter</p>
         <FiltersItems inSearchBar />
       </div>
       <Results />

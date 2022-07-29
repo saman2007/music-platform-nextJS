@@ -9,7 +9,7 @@ const MobileBar = (props) => {
   return (
     <div className="block sm:hidden w-full h-[3px] absolute bottom-0 left-0">
       <div
-        className="h-[3px] bg-[#80da37]"
+        className="h-[3px] bg-[#1db854] dark:bg-[#80da37]"
         style={{ width: getPercentOf(position, maxPosition) + "%" }}
       ></div>
     </div>

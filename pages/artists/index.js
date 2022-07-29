@@ -11,7 +11,7 @@ const ArtistsPage = ({ data, error }) => {
   return (
     <Layout>
       <div className="w-full flex justify-center items-center my-[30px]">
-        <h1 className="text-[23px] font-bold text-white text-center">
+        <h1 className="text-[23px] font-bold text-black dark:text-white text-center">
           All the artists that are in this app are here!
         </h1>
       </div>

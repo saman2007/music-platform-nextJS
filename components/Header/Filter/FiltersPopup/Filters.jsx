@@ -1,16 +1,21 @@
 import { useDispatch, useSelector } from "react-redux";
 import FilterItem from "../FilterItem";
-import genresActions from "../../../../store/GenresSlice";
+import filtersActions from "../../../../store/FiltersSlice";
 
-const FiltersItems = () => {
-  const selectedFilters = useSelector((store) => store.genres.searchGenres);
-  const genres = useSelector((store) => store.genres.allGenres);
+const FiltersItems = ({ inSearchBar }) => {
+  const selectedFilters = useSelector((store) => store.filters.searchGenres);
+  const genres = useSelector((store) => store.filters.allGenres);
   const dispatch = useDispatch();
 
   return (
-    <div className="w-full h-full flex flex-wrap gap-[5px]">
+    <div
+      className={`w-full h-full flex ${
+        inSearchBar ? "overflow-x-auto" : "flex-wrap"
+      } gap-[5px]`}
+    >
       {genres.map(({ name: genre, id }) => (
         <FilterItem
+          inSearchBar={inSearchBar}
           key={id}
           text={genre}
           currentFilters={selectedFilters}
@@ -24,7 +29,7 @@ const FiltersItems = () => {
               //if the length of current genres is 1, it meeans after deselecting the genre, no genre is selected. so replace the current genres with All genres
               if (selectedFilters.length === 1)
                 dispatch(
-                  genresActions.replaceGenres({
+                  filtersActions.replaceGenres({
                     data: "all genres",
                     type: "searchGenres",
                   })
@@ -32,20 +37,20 @@ const FiltersItems = () => {
               //else, deselect the genre
               else
                 dispatch(
-                  genresActions.removeSpecificGenre({
+                  filtersActions.removeSpecificGenre({
                     index: genreIndex,
                     type: "searchGenres",
                   })
                 );
             } else
               dispatch(
-                genresActions.addGenre({ data: genre, type: "searchGenres" })
+                filtersActions.addGenre({ data: genre, type: "searchGenres" })
               );
 
             //if genres includes All genre, the index of All genres should be removed
             selectedFilters.includes("all genres") &&
               dispatch(
-                genresActions.removeSpecificGenre({
+                filtersActions.removeSpecificGenre({
                   index: 0,
                   type: "searchGenres",
                 })

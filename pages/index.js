@@ -38,12 +38,12 @@ const artists = [
 ];
 
 export default function Home(props) {
-  const filters = useSelector((store) => store.genres.genres);
-  const genres = useSelector((store) => store.genres.allGenres);
+  const filters = useSelector((store) => store.filters.genres);
+  const genres = useSelector((store) => store.filters.allGenres);
   
   const filteredMusics = props.musics.filter((music) =>
     music.genres.some((r) =>
-      filters.includes("All Genres") ? true : filters.includes(r)
+      filters.includes("all genres") ? true : filters.includes(r)
     )
   );
 

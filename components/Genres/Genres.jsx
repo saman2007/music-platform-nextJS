@@ -1,12 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
-import genresActions from "../../store/GenresSlice";
+import filtersActions from "../../store/FiltersSlice";
 import Genre from "../Header/Filter/FilterItem";
 import AllGenresBtn from "./AllGenresBtn";
 import GenresContainer from "./GenresContainer";
 
 const Genres = (props) => {
   const { genres } = props;
-  const currentGenres = useSelector((store) => store.genres.genres);
+  const currentGenres = useSelector((store) => store.filters.genres);
   const dispatch = useDispatch();
 
   return (
@@ -25,15 +25,15 @@ const Genres = (props) => {
                 //if the length of current genres is 1, it meeans after deselecting the genre, no genre is selected. so replace the current genres with All genres
                 if (currentGenres.length === 1)
                   dispatch(
-                    genresActions.replaceGenres({
-                      data: "All Genres",
+                    filtersActions.replaceGenres({
+                      data: "all genres",
                       type: "genres",
                     })
                   );
                 //else, deselect the genre
                 else
                   dispatch(
-                    genresActions.removeSpecificGenre({
+                    filtersActions.removeSpecificGenre({
                       index: genreIndex,
                       type: "genres",
                     })
@@ -42,13 +42,13 @@ const Genres = (props) => {
               //add the genre to the genres list
               else
                 dispatch(
-                  genresActions.addGenre({ data: genre, type: "genres" })
+                  filtersActions.addGenre({ data: genre, type: "genres" })
                 );
 
               //if genres includes All genre, the index of All genres should be removed
-              currentGenres.includes("All Genres") &&
+              currentGenres.includes("all genres") &&
                 dispatch(
-                  genresActions.removeSpecificGenre({
+                  filtersActions.removeSpecificGenre({
                     index: 0,
                     type: "genres",
                   })
@@ -62,10 +62,10 @@ const Genres = (props) => {
       <AllGenresBtn
         setAllGenres={() => {
           dispatch(
-            genresActions.replaceGenres({ data: "All Genres", type: "genres" })
+            filtersActions.replaceGenres({ data: "all genres", type: "genres" })
           );
         }}
-        currentGenre={currentGenres.find((data) => data === "All Genres")}
+        currentGenre={currentGenres.find((data) => data === "all genres")}
       />
     </GenresContainer>
   );

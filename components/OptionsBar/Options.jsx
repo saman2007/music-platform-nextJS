@@ -1,7 +1,6 @@
 import { useCallback } from "react";
 import { throttle } from "../../helpers/helpers";
 import useAxis from "../../hooks/useAxis";
-import useCssTransition from "../../hooks/useCssTransition";
 import Popup from "../Popup/Popup";
 import OptionsItems from "./OptionsItems/OptionsItems";
 
@@ -12,7 +11,7 @@ const Options = (props) => {
     throttle(() => {
       //if user clicked on 3 dots, and option popup is not in the DOM, display that, else remove that
       toggle();
-    }, 400),
+    }, 300),
     []
   );
 
@@ -25,12 +24,13 @@ const Options = (props) => {
     <>
       <Popup
         childRef={childRef}
-        exteraClass="origin-top-left duration-[400] rounded-[20px] w-[250px] overflow-y-auto h-[250px]"
+        exteraClass="origin-top-left duration-[300ms] rounded-[20px] w-[250px] overflow-y-auto h-[250px]"
         left={offset.x + 25}
         top={offset.y}
         situation={situation}
-        time={400}
+        time={300}
         closePopup={close}
+        animations={{ opening: "scale-0", closing: "scale-0" }}
       >
         <OptionsItems />
       </Popup>

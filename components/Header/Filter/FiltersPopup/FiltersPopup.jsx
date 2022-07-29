@@ -6,9 +6,9 @@ import { throttle } from "../../../../helpers/helpers";
 import FiltersItems from "./Filters";
 
 const FiltersPopup = ({ children }) => {
-  const { situation, close, toggle } = useCssTransition(400, "close");
+  const { situation, close, toggle } = useCssTransition(250, "close");
 
-  const dotsEventHandler = useCallback(
+  const togglePopup = useCallback(
     throttle(() => {
       toggle();
     }, 400),
@@ -16,7 +16,7 @@ const FiltersPopup = ({ children }) => {
   );
 
   const { childrens, childRef, offset } = useAxis(children, {
-    onClick: dotsEventHandler,
+    onClick: togglePopup,
   });
 
   return (
@@ -24,10 +24,11 @@ const FiltersPopup = ({ children }) => {
       <Popup
         childRef={childRef}
         closePopup={close}
-        exteraClass="origin-top p-[5px] duration-[400] rounded-[10px] w-[200px] overflow-y-auto min-h-fit max-h-[250px]"
+        exteraClass="origin-top p-[5px] duration-[250ms] rounded-[10px] w-[200px] overflow-y-auto min-h-fit max-h-[250px]"
         time={400}
         situation={situation}
         top={offset.y + 30}
+        animations={{ opening: "scale-0", closing: "scale-0" }}
       >
         <FiltersItems />
       </Popup>

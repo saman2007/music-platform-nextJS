@@ -11,7 +11,7 @@ const FilterItem = (props) => {
   return (
     <span
       onClick={setCurrentFilter}
-      className={`${selectedFilterClass} flex-grow text-center px-[5px] py-[3px] bg-[#262626] text-[#d9d9d9] cursor-pointer border-2 border-solid border-[#323232] text-[15px] rounded-[8px] ${marginL}`}
+      className={`${selectedFilterClass} ${props.inSearchBar ? "max-w-fit min-w-fit" : "flex-grow"} text-center px-[5px] py-[3px] bg-[#262626] text-[#d9d9d9] cursor-pointer border-2 border-solid border-[#323232] text-[15px] rounded-[8px] ${marginL}`}
     >
       {text}
     </span>

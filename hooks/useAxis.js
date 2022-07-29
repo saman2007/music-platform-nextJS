@@ -10,7 +10,7 @@ const useAxis = (children, events) => {
 
   //to filter some events(like onClick and onMouseEnter)
   Object.keys(events).forEach((event) => {
-    if (event === "onClick" || event === "onMouseEnter") {
+    if (event === "onClick" || event === "onMouseEnter" || event === "onFocus") {
       let eventHandler;
       let callBack = events[event];
       eventHandler = (e) => {

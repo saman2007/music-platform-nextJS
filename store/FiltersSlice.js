@@ -1,12 +1,14 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const genresSlice = createSlice({
-  name: "genres",
+const filtersSlice = createSlice({
+  name: "filters",
   initialState: {
-    genres: ["All Genres"],
+    genres: ["all genres"],
     searchGenres: ["all genres"],
+    searchResultsFilters: ["all"],
     allGenres: [],
     allFeaturedGenres: [],
+    allSearchResultsFilters: ["artists", "musics", "albums"],
   },
   reducers: {
     replaceGenres: (state, actions) => {
@@ -27,5 +29,5 @@ const genresSlice = createSlice({
   },
 });
 
-export const genresReducers = genresSlice.reducer;
-export default genresSlice.actions;
+export const filtersReducers = filtersSlice.reducer;
+export default filtersSlice.actions;

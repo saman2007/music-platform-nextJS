@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import genresActions from "../../store/GenresSlice";
+import filtersActions from "../../store/FiltersSlice";
 import Actions from "./Actions/Actions";
 import Profile from "./Profile/Profile";
 import SearchForm from "./SearchBar/SearchForm";
@@ -9,7 +9,7 @@ const Header = ({ genres }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(genresActions.replaceAllGenres(genres));
+    dispatch(filtersActions.replaceAllGenres(genres));
   }, [genres]);
 
   return (

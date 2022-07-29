@@ -53,7 +53,14 @@ const Comments = (props) => {
             <p className="text-[20px] font-bold text-center mb-[5px] text-white">
               failed to load comments. please try again.
             </p>
-            <button className="px-[10px] py-[5px] rounded-[5px] border border-solid border-green-600 bg-green-500 text-white">
+            <button
+              onClick={() => {
+                dispatch(
+                  getComments({ singer: props.singer, name: props.name })
+                );
+              }}
+              className="px-[10px] py-[5px] rounded-[5px] border border-solid border-green-600 bg-green-500 text-white"
+            >
               try again
             </button>
           </>

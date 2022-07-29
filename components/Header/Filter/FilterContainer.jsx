@@ -1,12 +1,12 @@
 import AdjustmentsIcon from "@heroicons/react/outline/AdjustmentsIcon";
 import FilterItem from "./FilterItem";
 import { useDispatch, useSelector } from "react-redux";
-import genresActions from "../../../store/GenresSlice";
+import filtersActions from "../../../store/FiltersSlice";
 import FilterPopup from "./FiltersPopup/FiltersPopup";
 
 const FilterContainer = () => {
-  const selectedFilters = useSelector((store) => store.genres.searchGenres);
-  const featuredGenres = useSelector((store) => store.genres.allFeaturedGenres);
+  const selectedFilters = useSelector((store) => store.filters.searchGenres);
+  const featuredGenres = useSelector((store) => store.filters.allFeaturedGenres);
   const dispatch = useDispatch();
 
   return (
@@ -28,7 +28,7 @@ const FilterContainer = () => {
                 //if the length of current genres is 1, it meeans after deselecting the genre, no genre is selected. so replace the current genres with All genres
                 if (selectedFilters.length === 1)
                   dispatch(
-                    genresActions.replaceGenres({
+                    filtersActions.replaceGenres({
                       data: "all genres",
                       type: "searchGenres",
                     })
@@ -36,20 +36,20 @@ const FilterContainer = () => {
                 //else, deselect the genre
                 else
                   dispatch(
-                    genresActions.removeSpecificGenre({
+                    filtersActions.removeSpecificGenre({
                       index: genreIndex,
                       type: "searchGenres",
                     })
                   );
               } else
                 dispatch(
-                  genresActions.addGenre({ data: genre, type: "searchGenres" })
+                  filtersActions.addGenre({ data: genre, type: "searchGenres" })
                 );
 
               //if genres includes All genre, the index of All genres should be removed
               selectedFilters.includes("all genres") &&
                 dispatch(
-                  genresActions.removeSpecificGenre({
+                  filtersActions.removeSpecificGenre({
                     index: 0,
                     type: "searchGenres",
                   })

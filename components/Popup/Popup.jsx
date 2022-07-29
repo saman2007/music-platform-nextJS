@@ -11,6 +11,7 @@ const Popup = ({
   childRef,
   situation,
   closePopup,
+  animations,
 }) => {
   const boxRef = useRef();
 
@@ -37,13 +38,7 @@ const Popup = ({
       {situation !== "close" && (
         <div
           ref={boxRef}
-          className={`${
-            situation === "opening" || situation === "closing"
-              ? "scale-0"
-              : situation === "open"
-              ? "open"
-              : ""
-          } ${exteraClass} transition-all gap-x z-10 absolute bg-[#0d0d0d] border border-[#1e1e1e] border-solid`}
+          className={`${animations[situation]} ${exteraClass} transition-all gap-x z-10 absolute bg-[#0d0d0d] border border-[#1e1e1e] border-solid`}
           style={styles}
         >
           {children}

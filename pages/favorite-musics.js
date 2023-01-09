@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import MusicList from "../components/MusicList/MusicList";
@@ -69,6 +70,10 @@ const FavoriteMusics = () => {
 
   return (
     <Layout classes={"flex justify-center items-center"}>
+      <Head>
+        <title>your favorite musics</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {isInited &&
         (musics.length !== 0 ? (
           <div className="w-full sm:w-[500px] md:w-[700px] h-full pt-[50px]">
@@ -79,7 +84,9 @@ const FavoriteMusics = () => {
             />
           </div>
         ) : musics.length === 0 ? (
-          <h1 className="text-[25px] text-black dark:text-white font-bold">No data is here!</h1>
+          <h1 className="text-[25px] text-black dark:text-white font-bold">
+            No data is here!
+          </h1>
         ) : (
           ""
         ))}

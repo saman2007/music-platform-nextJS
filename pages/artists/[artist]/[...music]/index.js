@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import ErrorModal from "../../../../components/ErrorModal/ErrorModal";
@@ -21,12 +22,26 @@ const MusicPage = (props) => {
   //if props has error property, display error modal
   if (props.error) {
     return (
-      <ErrorModal error={"something went wrong!"} code={props.error.code} />
+      <>
+        <Head>
+          <title>ERROR 500!</title>
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
+        <ErrorModal error={"something went wrong!"} code={props.error.code} />
+      </>
     );
   }
 
   return (
     <Layout classes={"!px-[4px]"}>
+      <Head>
+        <title>spotify redesign</title>
+        <meta
+          name={`${music.name} from ${music.singer}`}
+          content="the best and most popular music platform in the world"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <MusicInfosContainer music={music} />
       <Comments singer={music.singer} name={music.name} />
     </Layout>

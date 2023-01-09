@@ -29,6 +29,14 @@ const Artist = (props) => {
   if (!router.isFallback) {
     return (
       <Layout>
+        <Head>
+          <title>{props.artist.name}'s page</title>
+          <meta
+            name="description"
+            content={`the official page of ${props.artist.name}`}
+          />
+          <meta name="viewport" content="width=device-width, initial-scale=1" />
+        </Head>
         <BackCover
           username={props.artist.username}
           name={props.artist.name}

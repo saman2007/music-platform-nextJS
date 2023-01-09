@@ -5,6 +5,7 @@ import MusicList from "../components/MusicList/MusicList";
 import Layout from "../components/PagesLayout/Layout";
 import RecentArtists from "../components/RecentArtists/RecentArtists";
 import { supabase } from "./_app";
+import Head from "next/head";
 
 const artists = [
   {
@@ -40,7 +41,7 @@ const artists = [
 export default function Home(props) {
   const filters = useSelector((store) => store.filters.genres);
   const genres = useSelector((store) => store.filters.allGenres);
-  
+
   const filteredMusics = props.musics.filter((music) =>
     music.genres.some((r) =>
       filters.includes("all genres") ? true : filters.includes(r)
@@ -49,6 +50,14 @@ export default function Home(props) {
 
   return (
     <Layout>
+      <Head>
+        <title>spotify redesign</title>
+        <meta
+          name="description"
+          content="the best and most popular music platform in the world"
+        />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       <div className="w-full p-[5px] overflow-x-auto flex flex-row gap-[15px] mb-[40px]">
         {props.playlists.map((data) => (
           <MusicCollection

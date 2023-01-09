@@ -7,6 +7,7 @@ import recentMusicsAc from "../store/RecentMusicsSlice";
 import { supabase } from "./_app";
 import { getUpdatedState } from "../helpers/helpers";
 import Layout from "../components/PagesLayout/Layout";
+import Head from "next/head";
 
 const recentMusicsPage = () => {
   const { musics, isInited } = useRecentMusicsValue();
@@ -72,6 +73,10 @@ const recentMusicsPage = () => {
 
   return (
     <Layout classes={"flex justify-center items-center"}>
+      <Head>
+        <title>history</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+      </Head>
       {isInited &&
         (musics.length !== 0 ? (
           <div className="w-full sm:w-[500px] md:w-[700px] h-full pt-[50px]">
@@ -83,7 +88,9 @@ const recentMusicsPage = () => {
             />
           </div>
         ) : musics.length === 0 ? (
-          <h1 className="text-[25px] text-black dark:text-white font-bold">No data is here!</h1>
+          <h1 className="text-[25px] text-black dark:text-white font-bold">
+            No data is here!
+          </h1>
         ) : (
           ""
         ))}

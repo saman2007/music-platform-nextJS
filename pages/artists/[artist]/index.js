@@ -7,6 +7,7 @@ import MusicList from "../../../components/MusicList/MusicList";
 import notificationActions from "../../../store/NotificatinSlice";
 import { supabase } from "../../_app";
 import Layout from "../../../components/PagesLayout/Layout";
+import Head from "next/head"
 
 const Artist = (props) => {
   const router = useRouter();

@@ -7,11 +7,17 @@ import { createClient } from "@supabase/supabase-js";
 import "../index.css";
 import Notification from "../components/notification/Notification";
 import ContextProvider from "../store/context";
+import Router from "next/router";
+import nprogress from "nprogress";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,
   process.env.NEXT_PUBLIC_API_KEY
 );
+
+Router.events.on("routeChangeStart", nprogress.start);
+Router.events.on("routeChangeError", nprogress.done);
+Router.events.on("routeChangeComplete", nprogress.done);
 
 function MyApp({ Component, pageProps, genres }) {
   return (

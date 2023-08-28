@@ -7,11 +7,9 @@ import { createClient } from "@supabase/supabase-js";
 import "../index.css";
 import Notification from "../components/notification/Notification";
 import ContextProvider from "../store/context";
-import Router, { useRouter } from "next/router";
+import Router from "next/router";
 import nprogress from "nprogress";
-import * as gtag from "../utils/gtag";
-import { useEffect } from "react";
-import Script from "next/script";
+import { GoogleAnalytics } from "nextjs-google-analytics";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,
@@ -23,30 +21,9 @@ Router.events.on("routeChangeError", nprogress.done);
 Router.events.on("routeChangeComplete", nprogress.done);
 
 function MyApp({ Component, pageProps, genres }) {
-  const router = useRouter();
-
-  useEffect(() => {
-    const handleRouteChange = (url) => {
-      gtag.pageview(url);
-    };
-    router.events.on("routeChangeComplete", handleRouteChange);
-    return () => {
-      router.events.off("routeChangeComplete", handleRouteChange);
-    };
-  }, [router.events]);
-
   return (
     <ContextProvider>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
-      />
-      <Script id="google-analytics" strategy="afterInteractive">{`
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-          gtag('config', '${gtag.GA_TRACKING_ID}');
-        `}</Script>
+      <GoogleAnalytics trackPageViews={{ ignoreHashChange: true }} />
       <Provider store={store}>
         <Notification />
         <div

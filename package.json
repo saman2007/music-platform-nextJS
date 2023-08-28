@@ -13,6 +13,7 @@
     "@reduxjs/toolkit": "^1.8.1",
     "@supabase/supabase-js": "^1.35.2",
     "next": "12.1.4",
+    "nextjs-google-analytics": "^2.3.3",
     "nprogress": "^0.2.0",
     "react": "18.0.0",
     "react-dom": "18.0.0",

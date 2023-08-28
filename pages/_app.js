@@ -38,22 +38,15 @@ function MyApp({ Component, pageProps, genres }) {
   return (
     <ContextProvider>
       <Script
-        id="gtag-init"
         strategy="afterInteractive"
-        onError={(e) => {
-          console.log("ana", e);
-        }}
-        dangerouslySetInnerHTML={{
-          __html: `
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', '${gtag.GA_TRACKING_ID}', {
-              page_path: window.location.pathname,
-            });
-          `,
-        }}
+        src={`https://www.googletagmanager.com/gtag/js?id=${gtag.GA_TRACKING_ID}`}
       />
+      <Script id="google-analytics" strategy="afterInteractive">{`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${gtag.GA_TRACKING_ID}');
+        `}</Script>
       <Provider store={store}>
         <Notification />
         <div

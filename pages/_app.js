@@ -23,16 +23,14 @@ function MyApp({ Component, pageProps, genres }) {
   return (
     <ContextProvider>
       <Provider store={store}>
-        <div className="max-w-[1440px] h-full m-auto">
-          <Notification />
-          <div
-            className={`relative w-full h-full overflow-hidden select-none bg-[#f8f9fa] dark:bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]`}
-          >
-            <Header genres={genres} />
-            <NavBar />
-            <MusicActionsBar />
-            <Component {...pageProps} />
-          </div>
+        <Notification />
+        <div
+          className={`relative w-full h-full overflow-hidden select-none bg-[#f8f9fa] dark:bg-black grid grid-cols-[70px,repeat(11,1fr)] grid-rows-[repeat(11,1fr),65px]`}
+        >
+          <Header genres={genres} />
+          <NavBar />
+          <MusicActionsBar />
+          <Component {...pageProps} />
         </div>
       </Provider>
     </ContextProvider>

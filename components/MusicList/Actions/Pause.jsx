@@ -7,6 +7,7 @@ const Pause = (props) => {
       height="100%"
       color="#80da37"
       onClickHandler={props.onClick}
+      className="pause-music-button"
     />
   );
 };

@@ -28,12 +28,12 @@ const Like = (props) => {
       {isLike ? (
         <SolidHeartIcon
           onClick={() => {
-            //display outline icon 
+            //display outline icon
             setISLike(false);
             //remove the music from users favorite musics
             dispatch(removeFavoriteMusic(music));
           }}
-          className={`text-red-600 ${classes} cursor-pointer`}
+          className={`text-red-600 ${classes} cursor-pointer add-to-favorite-musics`}
         />
       ) : (
         <OutlineHeartIcon

@@ -16,7 +16,7 @@ const NextPrevious = (props) => {
         }}
         className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#bdb3b3] dark:hover:bg-[#383838] transition duration-300 cursor-pointer"
       >
-        <NextTrackIcon className="w-[30px] h-[30px] fill-black dark:fill-white " />
+        <NextTrackIcon className="w-[30px] h-[30px] fill-black dark:fill-white next-music-button" />
       </span>
     );
   else if (kind === "previous")
@@ -28,7 +28,7 @@ const NextPrevious = (props) => {
         }}
         className="flex justify-center items-center w-[40px] h-[40px] rounded-full hover:bg-[#bdb3b3] dark:hover:bg-[#383838] transition duration-300 cursor-pointer"
       >
-        <NextTrackIcon className="w-[30px] h-[30px] fill-black dark:fill-white rotate-180" />
+        <NextTrackIcon className="w-[30px] h-[30px] fill-black dark:fill-white rotate-180 prev-music-button" />
       </span>
     );
 };

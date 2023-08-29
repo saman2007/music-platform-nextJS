@@ -4,14 +4,20 @@ const BackCover = (props) => {
   return (
     <div className="relative w-full h-[200px] rounded-[20px] flex items-center mb-[10px]">
       <div className="absolute w-full h-full">
-        <Image alt="artist-page-bg" src={props.cover} layout="fill" objectFit="cover" className="rounded-[20px]" />
+        <Image
+          alt="artist-page-bg"
+          src={props.cover || "/default-cover.jpg"}
+          layout="fill"
+          objectFit="cover"
+          className="rounded-[20px]"
+        />
       </div>
       <div className="h-full w-full flex items-center px-[15px] py-[5px]">
         <div className="relative w-[130px] h-[130px] rounded-[10px] z-[2]">
           <Image
             layout="fill"
             objectFit="cover"
-            src={props.profile}
+            src={props.profile || "/default-profile.jpg"}
             alt="artist-profile"
             className="rounded-[10px]"
           />

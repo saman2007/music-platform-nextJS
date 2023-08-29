@@ -6,7 +6,6 @@ import MusicListContainer from "./MusicListContainer";
 import MusicListenTimes from "./MusicListenTimes";
 import { useDispatch } from "react-redux";
 import musicActions from "../../store/MusicSlice";
-import recentMusicsActions from "../../store/RecentMusicsSlice";
 
 const MusicList = (props) => {
   const { musics, playlistId, title } = props;
@@ -14,7 +13,7 @@ const MusicList = (props) => {
 
   return (
     <MusicListContainer title={title}>
-      {musics.length !== 0 ? (
+      {musics && musics.length !== 0 ? (
         musics.map((music, index) => (
           <Music
             key={index}

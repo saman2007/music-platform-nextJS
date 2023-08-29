@@ -10,6 +10,8 @@ import ContextProvider from "../store/context";
 import Router from "next/router";
 import nprogress from "nprogress";
 import { GoogleAnalytics } from "nextjs-google-analytics";
+import GoogleTagManager from "react-gtm-module";
+import { useEffect } from "react";
 
 export const supabase = createClient(
   process.env.NEXT_PUBLIC_API_URL,
@@ -21,6 +23,12 @@ Router.events.on("routeChangeError", nprogress.done);
 Router.events.on("routeChangeComplete", nprogress.done);
 
 function MyApp({ Component, pageProps, genres }) {
+  useEffect(() => {
+    GoogleTagManager.initialize({
+      gtmId: process.env.NEXT_PUBLIC_GTM_MEASUREMENT_ID,
+    });
+  }, []);
+
   return (
     <ContextProvider>
       <GoogleAnalytics trackPageViews={{ ignoreHashChange: true }} />
@@ -40,7 +48,7 @@ function MyApp({ Component, pageProps, genres }) {
 }
 
 MyApp.getInitialProps = async () => {
-  let { data: genres, error } = await supabase.from("genres").select("*");
+  let { data: genres } = await supabase.from("genres").select("*");
 
   return { genres };
 };

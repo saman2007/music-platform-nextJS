@@ -59,9 +59,16 @@ export async function getServerSideProps({ params, resolvedUrl }) {
   //if name is false, display the notfound modal
   if (!name) return { notFound: true };
 
+  const queryParamLocation = resolvedUrl.indexOf("?");
+
   //creating the filters object
-  const filter = { musicPage: resolvedUrl };
-  console.log(filter);
+  const filter = {
+    musicPage: resolvedUrl.slice(
+      0,
+      queryParamLocation > -1 ? queryParamLocation : undefined
+    ),
+  };
+
   //get the music datas base on the filters
   const { data: music, error } = await supabase
     .from("musics")

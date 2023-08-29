@@ -6,7 +6,6 @@ const Play = (props) => {
       onClickHandler={props.onClick}
       height={"100%"}
       color={"#80da37"}
-      className="play-music-button"
     />
   );
 };

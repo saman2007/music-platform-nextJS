@@ -29,6 +29,7 @@ const MusicCollection = (props) => {
             onClickHandler={() => {
               dispatch(musicActions.pauseMusic());
             }}
+            className="pause-music-button"
           />
         ) : (
           <PlayIcon
@@ -41,7 +42,6 @@ const MusicCollection = (props) => {
               just play the music and dont fetch the datas again */
               if (playlistId === currentPlaylistId)
                 dispatch(musicActions.playMusic());
-                
               //else first get the playlist datas and then play the first music of the play list
               else dispatch(getPlaylist(playlistId));
             }}

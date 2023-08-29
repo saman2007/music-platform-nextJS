@@ -1,11 +1,11 @@
 const PauseIconSolid = (props) => {
-  const { onClickHandler, width, height, color } = props;
+  const { onClickHandler, width, height, color, className = "" } = props;
 
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
       style={{ width, height, minHeight: height, minWidth: width }}
-      className="cursor-pointer"
+      className={`cursor-pointer ${className}`}
       fill={color}
       viewBox="0 0 512 512"
       onClick={onClickHandler}
